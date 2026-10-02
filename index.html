@@ -1123,8 +1123,8 @@ if(_renderOriginal){
   function getGH(){try{return window.__flowosGH||null}catch(e){return null}}
   function setStatus(s){const e=document.getElementById('ghStatus');if(e)e.textContent=s}
   function collect(){
-    const h=(typeof historySnapshot==='function')?historySnapshot(isoToday()):{date:isoToday(),savedAt:Date.now(),tasks:(state.tasks||[]),focusSessions:[]};
-    return JSON.stringify({flowos:'history-v1',exportedAt:new Date().toISOString(),snapshot:h});
+    const history=(typeof loadHistory==='function')?loadHistory():[];
+    return JSON.stringify({flowos:'history-v1',exportedAt:new Date().toISOString(),history});
   }
   async function gh(path,opt={}){const s=getGH();if(!s)throw new Error('Enter GitHub token first');const r=await fetch('https://api.github.com'+path,{...opt,headers:{Accept:'application/vnd.github+json',Authorization:'Bearer '+s.token,'X-GitHub-Api-Version':'2022-11-28',...(opt.headers||{})}});if(!r.ok)throw new Error('GitHub '+r.status);return r.json()}
   async function upload(){
@@ -1136,7 +1136,7 @@ if(_renderOriginal){
     }catch(e){setStatus('GitHub backup failed: '+e.message)}
   }
   async function load(){
-    try{const id=(document.getElementById('ghGist')||{}).value?.trim();if(!id){setStatus('Enter the private Gist ID first.');return}const data=await gh('/gists/'+id);const f=data.files?.['flowos-history.json'];if(!f)throw new Error('History file not found');const parsed=JSON.parse(f.content);if(parsed.snapshot&&typeof archiveYesterday==='function'){const key=parsed.snapshot.date;const hs=loadHistory();hs[key]=parsed.snapshot;saveHistory(hs);renderHistory();setStatus('History loaded from GitHub.')}else setStatus('Invalid FlowOS history file.');}
+    try{const id=(document.getElementById('ghGist')||{}).value?.trim();if(!id){setStatus('Enter the private Gist ID first.');return}const data=await gh('/gists/'+id);const f=data.files?.['flowos-history.json'];if(!f)throw new Error('History file not found');const parsed=JSON.parse(f.content);const incoming=Array.isArray(parsed.history)?parsed.history:[];if(incoming.length&&typeof saveHistory==='function'){const merged=loadHistory();incoming.forEach(item=>{if(!item?.date)return;const i=merged.findIndex(v=>v.date===item.date);if(i>=0)merged[i]=item;else merged.push(item)});merged.sort((a,b)=>b.date.localeCompare(a.date));saveHistory(merged);renderHistory();setStatus('History loaded from GitHub.')}else setStatus('No history found in this backup.');}
     catch(e){setStatus('GitHub load failed: '+e.message)}
   }
   window.flowosGitHubSave=upload;window.flowosGitHubLoad=load;
