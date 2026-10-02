@@ -176,7 +176,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 @media(max-width:720px){header{padding:12px 14px}main{padding:12px 10px 105px}.today-workspace{grid-template-columns:1fr}.task-pool{position:relative;top:auto}.pool-list{max-height:260px}.priority-grid{grid-template-columns:1fr}.board-titlebar{display:block}.view-switch{margin-top:9px;width:max-content}.priority-head{display:block}.priority-legend{margin:8px 0 0}.today-focus .focus-actions{flex-wrap:wrap}}
 </style>
 
-</head>
+<style id="history-v1">.history-tools{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:7px;margin-top:12px}.history-day{border:1px solid #ebe8f1;border-radius:16px;margin-top:9px;background:#faf9fd;overflow:hidden}.history-day summary{list-style:none;cursor:pointer;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}.history-day summary::-webkit-details-marker{display:none}.history-items{padding:0 12px 10px;border-top:1px solid #eeeaf2}.history-item{display:flex;gap:9px;padding:10px 0;border-bottom:1px solid #eeeaf2}.history-item:last-child{border-bottom:0}.history-dot{width:22px;height:22px;border-radius:50%;border:1px solid #c8c4cf;display:grid;place-items:center;flex:none;color:#999}.history-dot.done{background:#7560df;color:#fff;border-color:#7560df}@media(max-width:620px){.history-tools{grid-template-columns:1fr 1fr}.history-tools input{grid-column:1/-1}}</style></head>
 <body>
 <div class="app">
 <header>
@@ -243,6 +243,11 @@ main{padding:18px 22px 115px}.screen.active{display:block}
   </div>
   <div class="card"><h3>自动调整建议</h3><div id="adjustments"></div></div>
   <div class="card"><h3>本周执行记录</h3><div id="weekly"></div></div>
+  <div class="card history-card">
+    <div class="row between"><div><h3 style="margin-bottom:4px">历史记录</h3><div class="small muted">本机保存，不同步 GitHub。每天可一键把昨天归档。</div></div><button class="primary" onclick="archiveYesterday()">一键导入昨日</button></div>
+    <div class="history-tools"><input id="historySearch" placeholder="搜索日期、任务、项目…" oninput="renderHistory()"><button class="secondary" onclick="exportHistory()">导出</button><button class="secondary" onclick="document.getElementById('historyFile').click()">导入备份</button><input id="historyFile" type="file" accept="application/json" style="display:none" onchange="importHistoryFile(event)"></div>
+    <div id="historyList"></div>
+  </div>
 </section>
 </main>
 
@@ -368,7 +373,7 @@ function render(){
  updateQuickStartBar();
 
  document.getElementById("headDate").textContent=fmtDate(isoToday());
- renderToday();renderPlan();renderGoals();renderStartPicker();renderFocus();renderReview();
+ renderToday();renderPlan();renderGoals();renderStartPicker();renderFocus();renderReview();renderHistory();
 }
 function renderToday(){
  const ts=state.tasks.filter(t=>t.date===isoToday());
@@ -855,6 +860,27 @@ function renderGoals(){
    <div class="children">${ps.map(p=>`<div style="padding:7px 0"><div class="row between"><b style="font-size:13px">${esc(p.title)}</b><span class="small muted">${p.progress}%</span></div><div class="progress" style="margin-top:6px"><i style="width:${p.progress}%"></i></div></div>`).join("")||'<span class="small muted">还没有项目。项目是目标与任务之间的桥。</span>'}</div></div>`;
  }).join("");
 }
+const HISTORY_KEY="flowos_history_v1";
+function loadHistory(){try{const x=JSON.parse(localStorage.getItem(HISTORY_KEY));return Array.isArray(x)?x:[]}catch(e){return []}}
+function saveHistory(h){localStorage.setItem(HISTORY_KEY,JSON.stringify(h))}
+function historySnapshot(date){
+ const ts=(state.tasks||[]).filter(t=>t.date===date);
+ return {date,savedAt:Date.now(),tasks:ts.map(t=>({id:t.id,title:t.title,date:t.date,time:t.time||"",kind:t.kind||"task",category:t.category||taskCategory(t),duration:+t.duration||0,actual:+t.actual||0,status:t.status||"todo",importance:+t.importance||3,urgent:!!t.urgent,priority:+t.priority||2,projectId:t.projectId||"",completedAt:t.completedAt||null})),focusSessions:ts.filter(t=>t.kind==="study"&&t.actual>0).map(t=>({taskId:t.id,title:t.title,planned:+t.duration||0,actual:+t.actual||0}))};
+}
+function archiveYesterday(){
+ const d=new Date(isoToday()+"T12:00:00");d.setDate(d.getDate()-1);const date=d.toISOString().slice(0,10);
+ const h=loadHistory(),snap=historySnapshot(date),idx=h.findIndex(x=>x.date===date);
+ if(idx>=0)h[idx]=snap;else h.push(snap);h.sort((a,b)=>b.date.localeCompare(a.date));saveHistory(h);renderHistory();toast("已归档 "+date);
+}
+function renderHistory(){
+ const box=document.getElementById("historyList");if(!box)return;const q=(document.getElementById("historySearch")?.value||"").trim().toLowerCase();
+ const h=loadHistory().filter(x=>!q||JSON.stringify(x).toLowerCase().includes(q));
+ if(!h.length){box.innerHTML="<div class=\"empty\">还没有历史记录。每天点一次「一键导入昨日」即可。</div>";return}
+ box.innerHTML=h.map(x=>{const done=x.tasks.filter(t=>t.status==="done").length,planned=x.tasks.reduce((a,t)=>a+t.duration,0),actual=x.tasks.reduce((a,t)=>a+t.actual,0);
+ return `<details class="history-day"><summary><div><b>${esc(fmtDate(x.date))}</b><span class="small muted"> · ${x.tasks.length} 项 · 完成 ${done}</span></div><span class="chip purple">${Math.round(planned/60*10)/10}h / ${Math.round(actual/60*10)/10}h</span></summary><div class="history-items">${x.tasks.map(t=>`<div class="history-item"><span class="history-dot ${t.status==="done"?"done":""}">${t.status==="done"?"✓":"·"}</span><div><b>${esc(t.title)}</b><div class="small muted">${t.kind==="study"?"学习":"任务"} · 计划 ${t.duration}m · 实际 ${t.actual||0}m${t.projectId?" · "+esc(projectName(t.projectId)):""}</div></div></div>`).join("")||"<div class=\"small muted\">当天没有任务。</div>"}</div></details>`}).join("");
+}
+function exportHistory(){const payload={version:1,exportedAt:Date.now(),history:loadHistory()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="flowos-history.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);}
+function importHistoryFile(e){const file=e.target.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const x=JSON.parse(reader.result),incoming=Array.isArray(x)?x:x.history;if(!Array.isArray(incoming))throw new Error("bad");const merged=loadHistory();incoming.forEach(item=>{if(!item?.date)return;const i=merged.findIndex(v=>v.date===item.date);if(i>=0)merged[i]=item;else merged.push(item)});merged.sort((a,b)=>b.date.localeCompare(a.date));saveHistory(merged);renderHistory();toast("已导入 "+incoming.length+" 天历史");}catch(err){toast("备份格式不正确")}e.target.value=""};reader.readAsText(file)}
 function renderReview(){
  let ts=state.tasks.filter(t=>t.date<=isoToday()), done=ts.filter(t=>t.status==="done"), planned=ts.reduce((a,t)=>a+t.duration,0), actual=ts.reduce((a,t)=>a+(t.actual||0),0);
  let rate=ts.length?Math.round(done.length/ts.length*100):0, accuracy=planned?Math.max(0,Math.round((1-Math.abs(actual-planned)/planned)*100)):0;
@@ -1023,12 +1049,7 @@ function quickAdd(){
   if(typeof state==="undefined") return;
   state.tasks=state.tasks||[];
   state.tasks.push({
-    id:Date.now(),
-    name:p.name,
-    time:p.time,
-    dur:p.dur,
-    done:false,
-    source:"inbox"
+    id:uid(),title:p.name,date:isoToday(),time:p.time,duration:p.dur,actual:0,priority:2,projectId:state.projects[0]?.id||"",status:"todo",difficulty:2,why:"",kind:"task",category:"task",importance:3,urgent:false,importanceOrder:state.tasks.filter(t=>t.date===isoToday()).length+1,source:"inbox"
   });
   if(typeof save==="function") save();
   el.value="";
@@ -1037,9 +1058,9 @@ function quickAdd(){
 function updatePlanStats(){
   if(typeof state==="undefined") return;
   const tasks=(state.tasks||[]);
-  const planned=tasks.reduce((n,t)=>n+(+t.dur||0),0);
+  const planned=tasks.reduce((n,t)=>n+(+t.duration||0),0);
   const actual=tasks.reduce((n,t)=>n+(+t.actual||0),0);
-  const done=tasks.filter(t=>t.done).length;
+  const done=tasks.filter(t=>t.status==="done").length;
   const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
   set("plannedTotal",planned>=60?Math.floor(planned/60)+"h "+planned%60+"m":planned+"m");
   set("actualTotal",actual>=60?Math.floor(actual/60)+"h "+actual%60+"m":actual+"m");
