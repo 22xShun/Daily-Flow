@@ -260,7 +260,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 <div id="toast" class="toast"></div>
 
 <script>
-const KEY="flowos_v04_visual_state";
+const KEY="flowos_v05_clean_state";
 const isoToday=()=>new Date().toISOString().slice(0,10);
 const uid=()=>Math.random().toString(36).slice(2,9);
 const fmtDate=d=>new Date(d+"T12:00:00").toLocaleDateString("zh-CN",{month:"long",day:"numeric",weekday:"short"});
@@ -336,28 +336,12 @@ normalizeFocus();
 function seed(){
  const t=isoToday();
  return {
-  goals:[
-   {id:"g1",title:"成为能够独立做工程设计的人",desc:"把理论、标准阅读、计算与实际项目连接起来",progress:18,projects:["p1"]},
-   {id:"g2",title:"建立稳定而可持续的生活系统",desc:"减少临时抱佛脚，让计划服务现实",progress:34,projects:["p2"]}
-  ],
-  projects:[
-   {id:"p1",goalId:"g1",title:"AS2870 学习与应用",progress:28},
-   {id:"p2",goalId:"g2",title:"个人效率系统 MVP",progress:45}
-  ],
-  tasks:[
-   {id:"v1",title:"准备会议资料",date:t,time:"09:00",duration:30,actual:0,priority:1,importanceOrder:1,importance:5,urgent:true,kind:"task",projectId:"p2",status:"todo",difficulty:2,repeat:""},
-   {id:"v2",title:"项目汇报",date:t,time:"10:30",duration:30,actual:0,priority:1,importanceOrder:2,importance:4,urgent:true,kind:"task",projectId:"p2",status:"todo",difficulty:2,repeat:""},
-   {id:"v3",title:"回复邮件",date:t,time:"11:00",duration:20,actual:0,priority:2,importanceOrder:3,importance:4,urgent:true,kind:"task",projectId:"p2",status:"todo",difficulty:1,repeat:""},
-   {id:"v4",title:"学习 AS2870",date:t,time:"14:00",duration:60,actual:0,priority:2,importanceOrder:4,importance:4,urgent:false,kind:"study",projectId:"p1",status:"todo",difficulty:3,repeat:""},
-   {id:"v5",title:"看书",date:t,time:"19:00",duration:30,actual:0,priority:2,importanceOrder:5,importance:3,urgent:false,kind:"study",projectId:"p1",status:"todo",difficulty:2,repeat:""},
-   {id:"v6",title:"回复邮件（跟进）",date:t,time:"12:00",duration:15,actual:0,priority:3,importanceOrder:6,importance:4,urgent:true,kind:"task",projectId:"p2",status:"todo",difficulty:1,repeat:""},
-   {id:"v7",title:"买材料",date:t,time:"16:00",duration:30,actual:0,priority:3,importanceOrder:7,importance:2,urgent:true,kind:"task",projectId:"p2",status:"todo",difficulty:1,repeat:""},
-   {id:"v8",title:"散步",date:t,time:"17:30",duration:20,actual:0,priority:3,importanceOrder:8,importance:3,urgent:false,kind:"task",projectId:"p2",status:"todo",difficulty:1,repeat:""},
-   {id:"v9",title:"做作业",date:t,time:"20:00",duration:90,actual:0,priority:3,importanceOrder:9,importance:2,urgent:false,kind:"study",projectId:"p1",status:"todo",difficulty:3,repeat:""},
-   {id:"v10",title:"整理桌面",date:t,time:"21:00",duration:20,actual:0,priority:3,importanceOrder:10,importance:2,urgent:false,kind:"task",projectId:"p2",status:"todo",difficulty:1,repeat:""},
-   {id:"v11",title:"健身",date:t,time:"18:30",duration:30,actual:0,priority:3,importanceOrder:11,importance:2,urgent:false,kind:"task",projectId:"p2",status:"todo",difficulty:1,repeat:""}
-  ],
-  activeTaskId:"a1", focus:{running:false,seconds:0,taskId:null}, createdAt:Date.now()
+  goals:[],
+  projects:[],
+  tasks:[],
+  activeTaskId:null,
+  focus:{running:false,seconds:0,taskId:null},
+  createdAt:Date.now()
  };
 }
 function load(){try{let x=JSON.parse(localStorage.getItem(KEY));return x||seed()}catch(e){return seed()}}
