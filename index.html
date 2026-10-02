@@ -183,7 +183,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 <header>
   <div class="headrow">
     <div><div class="eyebrow">PERSONAL OPERATING SYSTEM</div><div class="date" id="headDate"></div></div>
-    <button class="iconbtn" onclick="showLock()" title="View iPhone 锁屏原型">⌁</button>
+    <button class="iconbtn" onclick="showLock()" title="View iPhone Lock Screen Prototype">⌁</button>
   </div>
 </header>
 
@@ -197,7 +197,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
       <div class="pool-list" id="taskPool"></div>
     </aside>
     <section class="board-wrap">
-      <div class="board-titlebar"><div><div class="board-title">Important × Urgent Quadrants <button class="info-btn" onclick="openPriorityHelp()" title="View拖动规则">ⓘ</button></div><div class="board-sub">把Task拖到不同区域调整Important程度和Urgent程度</div></div><div class="view-switch"><button id="quadrantViewBtn" onclick="setBoardView('quadrant')">▦ Quadrants视图</button><button id="listViewBtn" onclick="setBoardView('list')">☷ List视图</button></div></div>
+      <div class="board-titlebar"><div><div class="board-title">Important × Urgent Quadrants <button class="info-btn" onclick="openPriorityHelp()" title="View Drag Rules">ⓘ</button></div><div class="board-sub">Drag tasks to different areas to change Importance and Urgency</div></div><div class="view-switch"><button id="quadrantViewBtn" onclick="setBoardView('quadrant')">▦ Quadrants View</button><button id="listViewBtn" onclick="setBoardView('list')">☷ List View</button></div></div>
       <div id="priorityBoard"></div>
       <div class="today-focus" id="todayFocusDock"></div>
     </section>
@@ -205,47 +205,47 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 </section>
 
 <section id="plan" class="screen">
-  <div class="sectiontitle">PLAN · 从目标落到Today</div>
+  <div class="sectiontitle">PLAN · From Goals to Today</div>
   <div class="tabs" id="planTabs"></div>
   <div class="card" id="planSummary"></div>
   <div class="card" id="planList"></div>
 </section>
 
 <section id="goals" class="screen">
-  <div class="row between" style="margin:6px 2px 10px"><div><div class="sectiontitle" style="margin:0">DIRECTION</div><h2 style="margin:3px 0">我想成为谁？</h2></div><div class="row"><button class="secondary" onclick="openProjectModal()">＋Project</button><button class="secondary" onclick="openGoalModal()">＋目标</button></div></div>
-  <div class="card"><div class="barlabel"><span>长期Goals清晰度</span><b id="goalHealth">0%</b></div>
+  <div class="row between" style="margin:6px 2px 10px"><div><div class="sectiontitle" style="margin:0">DIRECTION</div><h2 style="margin:3px 0">Who do I want to become?</h2></div><div class="row"><button class="secondary" onclick="openProjectModal()">＋Project</button><button class="secondary" onclick="openGoalModal()">+ Goal</button></div></div>
+  <div class="card"><div class="barlabel"><span>Long-term Goal clarity</span><b id="goalHealth">0%</b></div>
 <div class="plan-summary">
   <div class="plan-stat"><span class="small">Plan</span><b id="plannedTotal">0m</b></div>
   <div class="plan-stat"><span class="small">Actual</span><b id="actualTotal">0m</b></div>
-  <div class="plan-stat"><span class="small">Done率</span><b id="completionRate">0%</b></div>
+  <div class="plan-stat"><span class="small">Completion rate</span><b id="completionRate">0%</b></div>
 </div>
 
-<div class="progress"><i id="goalHealthBar" style="width:0%"></i></div><p class="small muted" style="margin:9px 0 0">目标不是待办。目标负责决定“Why做”，Project负责决定“做什么”，Task负责决定“现在做什么”。</p></div>
+<div class="progress"><i id="goalHealthBar" style="width:0%"></i></div><p class="small muted" style="margin:9px 0 0">Goals define why. Projects define what. Tasks define what to do now.</p></div>
   <div id="goalList"></div>
 </section>
 
 <section id="start" class="screen">
-  <div class="sectiontitle">FOCUS · 专注</div>
+  <div class="sectiontitle">FOCUS · Focus</div>
   <div class="card hero">
-    <div class="big" style="font-size:24px">现在只做一件事。</div>
-    <p>选择Task，直接Start计时。预计Time只是Plan，超过后Resume计时，直到你结束。</p>
+    <div class="big" style="font-size:24px">Focus on one thing at a time.</div>
+    <p>Select a Study task and start the timer. Planned time is a target; keep timing past it until you finish.</p>
   </div>
   <div class="card" id="startPicker"></div>
   <div class="card" id="startEngine"></div>
 </section>
 
 <section id="review" class="screen">
-  <div class="sectiontitle">REVIEW · 让Plan越来越像真实的你</div>
+  <div class="sectiontitle">REVIEW · Make the Plan More Realistic</div>
   <div class="grid2" id="metrics"></div>
   <div class="card" style="margin-top:13px">
-    <h3>Plan可信度</h3>
-    <p class="small muted">系统比较“Plan用时”和“Actual用时”。不是为了惩罚，而是为了下一次少做错误估算。</p>
+    <h3>Plan accuracy</h3>
+    <p class="small muted">The system compares planned and actual time to improve future estimates.</p>
     <div id="credibility"></div>
   </div>
-  <div class="card"><h3>自动调整建议</h3><div id="adjustments"></div></div>
-  <div class="card"><h3>本周执行记录</h3><div id="weekly"></div></div>
+  <div class="card"><h3>Auto-adjustment suggestions</h3><div id="adjustments"></div></div>
+  <div class="card"><h3>This week's execution</h3><div id="weekly"></div></div>
   <div class="card history-card">
-    <div class="row between"><div><h3 style="margin-bottom:4px">History记录</h3><div class="small muted">本机Save，不同步 GitHub。Daily可一键把昨天归档。</div></div><button class="primary" onclick="archiveYesterday()">Import yesterday</button></div>
+    <div class="row between"><div><h3 style="margin-bottom:4px">History</h3><div class="small muted">Saved for the current session; not automatically synced to GitHub. Archive yesterday with one click.</div></div><button class="primary" onclick="archiveYesterday()">Import yesterday</button></div>
     <div class="history-tools"><input id="historySearch" placeholder="SearchDate、Task、Project…" oninput="renderHistory()"><button class="secondary" onclick="exportHistory()">Export</button><button class="secondary" onclick="document.getElementById('historyFile').click()">Import backup</button><input id="historyFile" type="file" accept="application/json" style="display:none" onchange="importHistoryFile(event)"></div>
     <div id="historyList"></div>
     <div id="githubHistoryMount"></div>
@@ -258,7 +258,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
  <button data-nav="today" class="active" onclick="nav('today')"><span class="ni">◉</span>Today</button>
  <button data-nav="plan" onclick="nav('plan')"><span class="ni">▤</span>Plan</button>
  <button data-nav="goals" onclick="nav('goals')"><span class="ni">◎</span>Goals</button>
- <button data-nav="start" onclick="nav('start')"><span class="ni">▶</span>专注</button>
+ <button data-nav="start" onclick="nav('start')"><span class="ni">▶</span>Focus</button>
  <button data-nav="review" onclick="nav('review')"><span class="ni">↗</span>Review</button>
 </nav>
 </div>
@@ -427,7 +427,7 @@ function renderTodayFocusDock(){
  const host=document.getElementById('todayFocusDock'); if(!host)return;
  if(!state.focus||!state.focus.running){
    const t=state.tasks.find(x=>x.id===state.activeTaskId&&x.kind==='study'&&x.status!=='done')||state.tasks.find(x=>x.date===isoToday()&&x.kind==='study'&&x.status!=='done');
-   if(!t){host.innerHTML='<div class="empty" style="padding:24px">选择一个StudyTaskStart专注。普通Task不计时。</div>';return;}
+   if(!t){host.innerHTML='<div class="empty" style="padding:24px">选择一个StudyTaskStartFocus。普通Task不计时。</div>';return;}
    host.innerHTML=`<div class="row between"><div><b>${escapeHtml(t.title)}</b><div class="small muted">Study类Task · 预计 ${Number(t.duration)||0} min</div></div><button class="primary" onclick="beginFocus('${t.id}',${Number(t.duration)||5})">▶ StartStudy</button></div>`;return;
  }
  // renderFocus() owns the actual timer markup
@@ -635,7 +635,7 @@ function renderFocus(){
  <div class="focus-live-card ${over?'focus-over':''}">
    <div class="focus-live-head">
      <div><div class="focus-live-label">正在计时</div><div class="focus-live-task">${escapeHtml(t.title||t.name||"Task")}</div></div>
-     <div class="focus-live-label">${over?'已超过Plan':'专注中'}</div>
+     <div class="focus-live-label">${over?'已超过Plan':'Focus中'}</div>
    </div>
    <div class="focus-ring-wrap">
      <div class="focus-ring" style="--p:${p}%">
@@ -807,7 +807,7 @@ function renderFocusBox(t){
    <div class="small" style="text-align:center">正在进行</div>
    <div class="focuscircle" style="--progress:${pct}%">
      <div class="mins">${m}:${sec}</div>
-     <small>${over?"已超时":"专注中"}</small>
+     <small>${over?"已超时":"Focus中"}</small>
    </div>
    <div class="focusmeta">
      <span class="chip ${over?"orange":"purple"}">${over?"超时 +"+om+":"+os:"剩余 "+rm+":"+rs}</span>
@@ -878,7 +878,7 @@ function archiveYesterday(){
 function renderHistory(){
  const box=document.getElementById("historyList");if(!box)return;const q=(document.getElementById("historySearch")?.value||"").trim().toLowerCase();
  const h=loadHistory().filter(x=>!q||JSON.stringify(x).toLowerCase().includes(q));
- if(!h.length){box.innerHTML="<div class=\"empty\">还没There areHistory记录。Daily点一次「Import yesterday」即可。</div>";return}
+ if(!h.length){box.innerHTML="<div class=\"empty\">还没There areHistory。Daily点一次「Import yesterday」即可。</div>";return}
  box.innerHTML=h.map(x=>{const done=x.tasks.filter(t=>t.status==="done").length,planned=x.tasks.reduce((a,t)=>a+t.duration,0),actual=x.tasks.reduce((a,t)=>a+t.actual,0);
  return `<details class="history-day"><summary><div><b>${esc(fmtDate(x.date))}</b><span class="small muted"> · ${x.tasks.length}  items · Done ${done}</span></div><span class="chip purple">${Math.round(planned/60*10)/10}h / ${Math.round(actual/60*10)/10}h</span></summary><div class="history-items">${x.tasks.map(t=>`<div class="history-item"><span class="history-dot ${t.status==="done"?"done":""}">${t.status==="done"?"✓":"·"}</span><div><b>${esc(t.title)}</b><div class="small muted">${t.kind==="study"?"Study":"Task"} · Plan ${t.duration}m · Actual ${t.actual||0}m${t.projectId?" · "+esc(projectName(t.projectId)):""}</div></div></div>`).join("")||"<div class=\"small muted\">当天没There areTask。</div>"}</div></details>`}).join("");
 }
@@ -887,7 +887,7 @@ function importHistoryFile(e){const file=e.target.files?.[0];if(!file)return;con
 function renderReview(){
  let ts=state.tasks.filter(t=>t.date<=isoToday()), done=ts.filter(t=>t.status==="done"), planned=ts.reduce((a,t)=>a+t.duration,0), actual=ts.reduce((a,t)=>a+(t.actual||0),0);
  let rate=ts.length?Math.round(done.length/ts.length*100):0, accuracy=planned?Math.max(0,Math.round((1-Math.abs(actual-planned)/planned)*100)):0;
- document.getElementById("metrics").innerHTML=`<div class="metric"><div class="num">${rate}%</div><div class="lbl">Completion rate</div></div><div class="metric"><div class="num">${accuracy}%</div><div class="lbl">Plan可信度</div></div><div class="metric"><div class="num">${Math.round(planned/60*10)/10}h</div><div class="lbl">累计Plan</div></div><div class="metric"><div class="num">${Math.round(actual/60*10)/10}h</div><div class="lbl">累计Actual</div></div>`;
+ document.getElementById("metrics").innerHTML=`<div class="metric"><div class="num">${rate}%</div><div class="lbl">Completion rate</div></div><div class="metric"><div class="num">${accuracy}%</div><div class="lbl">Plan accuracy</div></div><div class="metric"><div class="num">${Math.round(planned/60*10)/10}h</div><div class="lbl">累计Plan</div></div><div class="metric"><div class="num">${Math.round(actual/60*10)/10}h</div><div class="lbl">累计Actual</div></div>`;
  document.getElementById("credibility").innerHTML=`<div style="margin:12px 0"><div class="barlabel"><span>Plan ${Math.round(planned/60*10)/10}h</span><span>Actual ${Math.round(actual/60*10)/10}h</span></div><div class="progress"><i style="width:${Math.min(100,accuracy)}%"></i></div></div><p class="small muted">可信度不是“好坏分数”。它只表示系统目前对你的Time估计There are多接近现实。</p>`;
  let long=state.tasks.filter(t=>t.status!=="done"&&t.date<isoToday()).length;
  let candidates=state.tasks.filter(t=>t.status==="done"&&t.actual>0&&Math.abs(t.actual-t.duration)>=Math.max(10,t.duration*.25));
@@ -1080,28 +1080,28 @@ if(_renderOriginal){
 </script>
 
 <div id="quickStartBar" style="display:none;position:fixed;bottom:84px;left:50%;transform:translateX(-50%);width:min(420px,calc(100% - 32px));z-index:20">
-  <button onclick="quickStartNext()" style="width:100%;border:0;border-radius:16px;padding:14px;background:#7661d8;color:#fff;font-weight:750;box-shadow:0 10px 28px rgba(118,97,216,.25)">▶ 立即Start下一件</button>
+  <button onclick="quickStartNext()" style="width:100%;border:0;border-radius:16px;padding:14px;background:#7661d8;color:#fff;font-weight:750;box-shadow:0 10px 28px rgba(118,97,216,.25)">▶ Start Next Task</button>
 </div>
 
 <script id="english-ui-layer">
 // English UI normalization layer. Keeps parsing rules intact while translating visible UI text.
 (function(){
   const replacements={
-    "View iPhone 锁屏原型":"View iPhone Lock Screen Prototype",
-    "View拖动规则":"View Drag Rules",
-    "把Task拖到不同区域调整Important程度和Urgent程度":"Drag tasks to different areas to change Importance and Urgency",
+    "View iPhone Lock Screen Prototype":"View iPhone Lock Screen Prototype",
+    "View Drag Rules":"View Drag Rules",
+    "Drag tasks to different areas to change Importance and Urgency":"Drag tasks to different areas to change Importance and Urgency",
     "Quadrants视图":"Quadrants View","List视图":"List View",
-    "PLAN · 从目标落到Today":"PLAN · From Goals to Today",
-    "我想成为谁？":"Who do I want to become?","＋目标":"+ Goal",
-    "长期Goals清晰度":"Long-term Goal clarity","Done率":"Completion rate",
-    "目标不是待办。目标负责决定“Why做”，Project负责决定“做什么”，Task负责决定“现在做什么”。":"Goals define why. Projects define what. Tasks define what to do now.",
-    "FOCUS · 专注":"FOCUS · Focus","现在只做一件事。":"Focus on one thing at a time.",
-    "选择Task，直接Start计时。预计Time只是Plan，超过后Resume计时，直到你结束。":"Select a Study task and start the timer. Planned time is a target; keep timing past it until you finish.",
-    "REVIEW · 让Plan越来越像真实的你":"REVIEW · Make the Plan More Realistic",
-    "Plan可信度":"Plan accuracy","系统比较“Plan用时”和“Actual用时”。不是为了惩罚，而是为了下一次少做错误估算。":"The system compares planned and actual time to improve future estimates.",
-    "自动调整建议":"Auto-adjustment suggestions","本周执行记录":"This week's execution","History记录":"History",
-    "本机Save，不同步 GitHub。Daily可一键把昨天归档。":"Saved for the current session; not automatically synced to GitHub. Archive yesterday with one click.",
-    "专注":"Focus","Study|阅读|看书|作业|AS2870|笔记|复习":"Study | Reading | Assignments | AS2870 | Notes | Review",
+    "PLAN · From Goals to Today":"PLAN · From Goals to Today",
+    "Who do I want to become?":"Who do I want to become?","+ Goal":"+ Goal",
+    "Long-term Goal clarity":"Long-term Goal clarity","Completion rate":"Completion rate",
+    "Goals define why. Projects define what. Tasks define what to do now.":"Goals define why. Projects define what. Tasks define what to do now.",
+    "FOCUS · Focus":"FOCUS · Focus","Focus on one thing at a time.":"Focus on one thing at a time.",
+    "Select a Study task and start the timer. Planned time is a target; keep timing past it until you finish.":"Select a Study task and start the timer. Planned time is a target; keep timing past it until you finish.",
+    "REVIEW · Make the Plan More Realistic":"REVIEW · Make the Plan More Realistic",
+    "Plan accuracy":"Plan accuracy","The system compares planned and actual time to improve future estimates.":"The system compares planned and actual time to improve future estimates.",
+    "Auto-adjustment suggestions":"Auto-adjustment suggestions","This week's execution":"This week's execution","History":"History",
+    "Saved for the current session; not automatically synced to GitHub. Archive yesterday with one click.":"Saved for the current session; not automatically synced to GitHub. Archive yesterday with one click.",
+    "Focus":"Focus","Study|阅读|看书|作业|AS2870|笔记|复习":"Study | Reading | Assignments | AS2870 | Notes | Review",
     "未归类":"Uncategorized","没There are匹配的Task":"No matching tasks",
     "会议|Project|邮件|汇报|资料|电话|老师":"Meetings | Projects | Email | Reports | Materials | Calls | Teacher",
     "散步|材料|桌面|健身|买菜|家务":"Walk | Materials | Desk | Fitness | Groceries | Chores",
@@ -1111,7 +1111,7 @@ if(_renderOriginal){
     "同一象限拖到另一张卡上方":"Drag above another card in the same quadrant","调整 1–5 级Important程度。":"Adjust Importance from 1–5.",
     "Study类才There are计时器；普通Task不计时。":"Only Study tasks use the timer; regular Tasks do not.",
     "知道了":"Got it","Important程度Adjusted":"Importance adjusted",
-    "选择一个StudyTaskStart专注。普通Task不计时。":"Select a Study task to start Focus. Regular Tasks do not use the timer.",
+    "选择一个StudyTaskStartFocus。普通Task不计时。":"Select a Study task to start Focus. Regular Tasks do not use the timer.",
     "Study类Task · 预计 $":"Study Task · Planned $","拖Task到这里":"Drag a task here",
     "I Important且Urgent":"I · Important & Urgent","II Important但不Urgent":"II · Important & Not Urgent",
     "III Urgent但不Important":"III · Urgent & Not Important","IV 不Important也不Urgent":"IV · Not Important & Not Urgent",
@@ -1131,7 +1131,7 @@ if(_renderOriginal){
     "只There areStudy类Task会进入计时器；普通Task不计时。":"Only Study tasks enter the timer; regular Tasks do not use it.",
     "预计 $":"Planned $","Today没There are未Done的StudyTask。":"No unfinished Study tasks today.",
     "普通Task请直接Done，不需要计时。":"Mark regular Tasks Done directly; no timer is needed.",
-    "正在计时":"Timer running","已超过Plan":"Past planned time","专注中":"Focused",
+    "正在计时":"Timer running","已超过Plan":"Past planned time","Focus中":"Focused",
     "比预计多学 ":"Extra time: ","剩余 ":"Remaining: ","隐藏计时":"Hide Timer","✓ Done并记录":"✓ Done & Record",
     "已Pause，Resume后从累计Time接着Study。":"Paused. Resume to continue from the accumulated time.",
     "预计Time只是目标，超过后Resume记录ActualStudyTime。":"Planned time is only a target; continue past it and record actual study time.",
@@ -1156,7 +1156,7 @@ if(_renderOriginal){
     "已把 $":"Moved $","个低PriorityTask移到下一天":" low-priority tasks to the next day",
     "当前无需自动平衡":"No auto-balancing needed",
     "还没There areProject。Project是目标与Task之间的桥。":"No Projects yet. Projects connect Goals and Tasks.",
-    "已归档 ":"Archived ","还没There areHistory记录。Daily点一次「Import yesterday」即可。":"No History yet. Use “Import yesterday” once a day.",
+    "已归档 ":"Archived ","还没There areHistory。Daily点一次「Import yesterday」即可。":"No History yet. Use “Import yesterday” once a day.",
     "当天没There areTask。":"No tasks for this day.","已导入 ":"Imported ",
     " 天History":" days of History","备份格式不正确":"Invalid backup format","累计Plan":"Total Planned","累计Actual":"Total Actual",
     "可信度不是“好坏分数”。它只表示系统目前对你的Time估计There are多接近现实。":"Accuracy is not a good/bad score; it shows how close current time estimates are to reality.",
@@ -1183,7 +1183,7 @@ if(_renderOriginal){
     "Time、Date、顶部状态、Widget、Quick actions":"Time, Date, status, Widget, and Quick Actions",
     "未定Time":"Time not set","解析Done，可以加入Plan":"Parsed. Ready to add to Plan",
     "已把一句话变成Task":"Turned one sentence into a Task","先Enter one sentence":"Enter one sentence first",
-    "▶ 立即Start下一件":"▶ Start Next Task",
+    "▶ Start Next Task":"▶ Start Next Task",
     "早上":"morning","上午":"morning","下午":"afternoon","晚上":"evening",
     "周一":"Mon","周二":"Tue","周三":"Wed","周四":"Thu","周五":"Fri","周六":"Sat","周日":"Sun","周天":"Sun",
     "没有":"None","完成":"Complete","未完成":"Open","已完成":"Completed","编辑":"Edit","重做":"Redo","顺延":"Reschedule","记录":"Record",
