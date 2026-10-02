@@ -1,0 +1,19 @@
+{
+  "name": "FlowOS — Personal Operating System",
+  "short_name": "FlowOS",
+  "description": "A lightweight personal planning and focus workspace.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbfafc",
+  "theme_color": "#f7f3ee",
+  "lang": "en-AU",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
