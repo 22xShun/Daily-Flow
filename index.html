@@ -248,6 +248,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
     <div class="row between"><div><h3 style="margin-bottom:4px">History记录</h3><div class="small muted">本机Save，不同步 GitHub。Daily可一键把昨天归档。</div></div><button class="primary" onclick="archiveYesterday()">Import yesterday</button></div>
     <div class="history-tools"><input id="historySearch" placeholder="SearchDate、Task、Project…" oninput="renderHistory()"><button class="secondary" onclick="exportHistory()">Export</button><button class="secondary" onclick="document.getElementById('historyFile').click()">Import backup</button><input id="historyFile" type="file" accept="application/json" style="display:none" onchange="importHistoryFile(event)"></div>
     <div id="historyList"></div>
+    <div id="githubHistoryMount"></div>
   </div>
 </section>
 </main>
@@ -862,8 +863,9 @@ function renderGoals(){
  }).join("");
 }
 const HISTORY_KEY="flowos_history_v1";
-function loadHistory(){try{const x=JSON.parse(localStorage.getItem(HISTORY_KEY));return Array.isArray(x)?x:[]}catch(e){return []}}
-function saveHistory(h){localStorage.setItem(HISTORY_KEY,JSON.stringify(h))}
+let historyCache=[];
+function loadHistory(){return Array.isArray(historyCache)?historyCache:[]}
+function saveHistory(h){historyCache=Array.isArray(h)?h:[]}
 function historySnapshot(date){
  const ts=(state.tasks||[]).filter(t=>t.date===date);
  return {date,savedAt:Date.now(),tasks:ts.map(t=>({id:t.id,title:t.title,date:t.date,time:t.time||"",kind:t.kind||"task",category:t.category||taskCategory(t),duration:+t.duration||0,actual:+t.actual||0,status:t.status||"todo",importance:+t.importance||3,urgent:!!t.urgent,priority:+t.priority||2,projectId:t.projectId||"",completedAt:t.completedAt||null})),focusSessions:ts.filter(t=>t.kind==="study"&&t.actual>0).map(t=>({taskId:t.id,title:t.title,planned:+t.duration||0,actual:+t.actual||0}))};
@@ -1139,7 +1141,7 @@ if(_renderOriginal){
   }
   window.flowosGitHubSave=upload;window.flowosGitHubLoad=load;
   window.addEventListener('load',()=>{
-    const host=document.getElementById('history')||document.querySelector('[id*="history"]');if(!host)return;
+    const host=document.getElementById('githubHistoryMount');if(!host)return;
     if(document.getElementById('githubHistoryCard'))return;
     const d=document.createElement('div');d.id='githubHistoryCard';d.className='github-history';d.innerHTML='<h4>Private GitHub History</h4><p>History is not kept here long-term. Upload it to a private GitHub Gist and load it when needed. Your token stays in memory only for this session.</p><input id="ghToken" type="password" autocomplete="off" placeholder="GitHub token (gist permission)"><input id="ghGist" placeholder="Private Gist ID (leave blank to create)"><div class="github-actions"><button onclick="flowosGitHubSave()">Save to GitHub</button><button class="secondary" onclick="flowosGitHubLoad()">Load from GitHub</button></div><div id="ghStatus" class="gh-status"></div>';
     host.appendChild(d);
