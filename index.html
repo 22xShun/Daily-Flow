@@ -1084,27 +1084,139 @@ if(_renderOriginal){
 </div>
 
 <script id="english-ui-layer">
-// English UI normalization for dynamic text.
+// English UI normalization layer. Keeps parsing rules intact while translating visible UI text.
 (function(){
   const replacements={
-    "早上":"morning","上午":"morning","下午":"afternoon","晚上":"evening","周一":"Mon","周二":"Tue","周三":"Wed","周四":"Thu","周五":"Fri","周六":"Sat","周日":"Sun","周天":"Sun",
+    "View iPhone 锁屏原型":"View iPhone Lock Screen Prototype",
+    "View拖动规则":"View Drag Rules",
+    "把Task拖到不同区域调整Important程度和Urgent程度":"Drag tasks to different areas to change Importance and Urgency",
+    "Quadrants视图":"Quadrants View","List视图":"List View",
+    "PLAN · 从目标落到Today":"PLAN · From Goals to Today",
+    "我想成为谁？":"Who do I want to become?","＋目标":"+ Goal",
+    "长期Goals清晰度":"Long-term Goal clarity","Done率":"Completion rate",
+    "目标不是待办。目标负责决定“Why做”，Project负责决定“做什么”，Task负责决定“现在做什么”。":"Goals define why. Projects define what. Tasks define what to do now.",
+    "FOCUS · 专注":"FOCUS · Focus","现在只做一件事。":"Focus on one thing at a time.",
+    "选择Task，直接Start计时。预计Time只是Plan，超过后Resume计时，直到你结束。":"Select a Study task and start the timer. Planned time is a target; keep timing past it until you finish.",
+    "REVIEW · 让Plan越来越像真实的你":"REVIEW · Make the Plan More Realistic",
+    "Plan可信度":"Plan accuracy","系统比较“Plan用时”和“Actual用时”。不是为了惩罚，而是为了下一次少做错误估算。":"The system compares planned and actual time to improve future estimates.",
+    "自动调整建议":"Auto-adjustment suggestions","本周执行记录":"This week's execution","History记录":"History",
+    "本机Save，不同步 GitHub。Daily可一键把昨天归档。":"Saved for the current session; not automatically synced to GitHub. Archive yesterday with one click.",
+    "专注":"Focus","Study|阅读|看书|作业|AS2870|笔记|复习":"Study | Reading | Assignments | AS2870 | Notes | Review",
+    "未归类":"Uncategorized","没There are匹配的Task":"No matching tasks",
+    "会议|Project|邮件|汇报|资料|电话|老师":"Meetings | Projects | Email | Reports | Materials | Calls | Teacher",
+    "散步|材料|桌面|健身|买菜|家务":"Walk | Materials | Desk | Fitness | Groceries | Chores",
+    "显示AllTask":"Show All Tasks","已Filter：$":"Filtered: $",
+    "Quadrants怎么用":"How to use Quadrants","这里不是固定顺序，而是用拖动调整Priority。":"This is not a fixed order; drag to adjust priority.",
+    "拖到其他象限":"Drag to another quadrant","改变Important \n Urgent属性。":"Change Importance / Urgency.",
+    "同一象限拖到另一张卡上方":"Drag above another card in the same quadrant","调整 1–5 级Important程度。":"Adjust Importance from 1–5.",
+    "Study类才There are计时器；普通Task不计时。":"Only Study tasks use the timer; regular Tasks do not.",
+    "知道了":"Got it","Important程度Adjusted":"Importance adjusted",
+    "选择一个StudyTaskStart专注。普通Task不计时。":"Select a Study task to start Focus. Regular Tasks do not use the timer.",
+    "Study类Task · 预计 $":"Study Task · Planned $","拖Task到这里":"Drag a task here",
+    "I Important且Urgent":"I · Important & Urgent","II Important但不Urgent":"II · Important & Not Urgent",
+    "III Urgent但不Important":"III · Urgent & Not Important","IV 不Important也不Urgent":"IV · Not Important & Not Urgent",
+    "List视图：直接上下拖动调整 1–5 级Important程度。":"List view: drag up or down to adjust Importance from 1–5.",
+    "Study · 可计时":"Study · Timer","Task · 不计时":"Task · No Timer","Today没There areTask":"No Tasks Today",
+    "List排序只调整Important程度；Time仍由Task自己的Time字段决定。":"List sorting only changes Importance; time still follows each task's time field.",
+    "Task卡直接拖动：跨象限改变Important\nUrgent；同象限上下拖动调整 1–5 级Important程度。":"Drag task cards: across quadrants changes Importance/Urgency; within a quadrant changes Importance 1–5.",
+    "拖动调整":"Drag to adjust","Important且Urgent":"Important & Urgent","现在处理":"Do now",
+    "Important但不Urgent":"Important & Not Urgent","Plan推进":"Move the Plan forward","Urgent但不Important":"Urgent & Not Important","尽快处理":"Handle soon","委托":"Delegate",
+    "不Important也不Urgent":"Not Important & Not Urgent","There are空再做":"Do later",
+    "⭐ 级别越高越Important。Time轴仍按Time显示，不会被拖动排序改变。":"⭐ Higher level means higher Importance. The timeline still follows task time.",
+    "AdjustedImportant程度":"Adjusted Importance","已移动到新的优先区域":"Moved to a new priority area",
+    "Important程度已重新排序":"Importance reordered","拖动调整Important程度":"Drag to adjust Importance",
+    "StartStudy计时":"Start Study Timer","明天":"Tomorrow","已Done，记录执行Time":"Done; execution time recorded",
+    "已重新打开":"Reopened","Today没There areStudy类Task可计时":"No Study tasks available for timing today",
+    "普通Task不计时，直接Done即可":"Regular Tasks do not use the timer; mark them Done directly.",
+    "只There areStudy类Task会进入计时器；普通Task不计时。":"Only Study tasks enter the timer; regular Tasks do not use it.",
+    "预计 $":"Planned $","Today没There are未Done的StudyTask。":"No unfinished Study tasks today.",
+    "普通Task请直接Done，不需要计时。":"Mark regular Tasks Done directly; no timer is needed.",
+    "正在计时":"Timer running","已超过Plan":"Past planned time","专注中":"Focused",
+    "比预计多学 ":"Extra time: ","剩余 ":"Remaining: ","隐藏计时":"Hide Timer","✓ Done并记录":"✓ Done & Record",
+    "已Pause，Resume后从累计Time接着Study。":"Paused. Resume to continue from the accumulated time.",
+    "预计Time只是目标，超过后Resume记录ActualStudyTime。":"Planned time is only a target; continue past it and record actual study time.",
+    "Today没There are未DonePriority":"No unfinished priority tasks today",
+    "已加入StudyTask":"Study task added","已加入Today":"Added to Today","普通Task不使用计时器":"Regular Tasks do not use the timer",
+    "Resume计时":"Resume Timer","已Pause":"Paused","已自动安排 $":"Automatically scheduled $",
+    " 件未排TimeTask，预留 10 min缓冲":" unscheduled tasks, with a 10 min buffer",
+    "Today没There are需要自动安排的Task":"No tasks need automatic scheduling today",
+    "已顺延到 ":"Rescheduled to ","已放入求助池，可以稍后Resume":"Moved to the help pool; resume later",
+    "Today的PriorityTask":"Today's Priority Tasks","现在":"Now","该Start下一件事了":"Ready to start the next task",
+    "稍后":"Later","10min前":"10 min before","TodayThere are 3 个Priority":"3 priorities today",
+    "系统已经根据你的Time负荷排好顺序，不需要一次看完AllTask。":"The system orders tasks by time load so you do not need to view everything at once.",
+    "这就是我们要做的“Lock-screen notification”。":"This is the Lock Screen notification we are building.",
+    "不是单纯Reminder“你There areTask”，而是直接给用户一个最小启动动作：":"Not just a reminder; it gives you a minimal action to start.",
+    "点击后直接进入 FlowOS 的启动引擎。":"Tap to enter the FlowOS start flow.",
+    "正在进行":"In progress","已超时":"Over time","超时 +":"Overtime +",
+    "已经超过预计Time，计时不会自动停止。":"The timer does not stop automatically when planned time is reached.",
+    "到达预计Time后会Resume计时，直到你主动Done。":"Timing continues after planned time until you mark the task Done.",
+    " min已记录":" min recorded","Plan负荷 · $":"Plan load · $","已Done":"Done",
+    "可能超载":"May be overloaded","负荷正常":"Load is normal","自动平衡":"Auto balance","自动排程":"Auto schedule",
+    "这一天没There areTask。":"No tasks on this day.",
+    "已把 $":"Moved $","个低PriorityTask移到下一天":" low-priority tasks to the next day",
+    "当前无需自动平衡":"No auto-balancing needed",
+    "还没There areProject。Project是目标与Task之间的桥。":"No Projects yet. Projects connect Goals and Tasks.",
+    "已归档 ":"Archived ","还没There areHistory记录。Daily点一次「Import yesterday」即可。":"No History yet. Use “Import yesterday” once a day.",
+    "当天没There areTask。":"No tasks for this day.","已导入 ":"Imported ",
+    " 天History":" days of History","备份格式不正确":"Invalid backup format","累计Plan":"Total Planned","累计Actual":"Total Actual",
+    "可信度不是“好坏分数”。它只表示系统目前对你的Time估计There are多接近现实。":"Accuracy is not a good/bad score; it shows how close current time estimates are to reality.",
+    " 个Task过期":" overdue tasks","先决定是否顺延，不要让过期Task悄悄吞掉Today。":"Decide whether to reschedule overdue tasks instead of letting them quietly consume Today.",
+    "把过期Task移到Today":"Move overdue tasks to Today","例如Plan $":"For example, planned $",
+    " min。可以把这个Task的未来默认时长调整。":" min. You can adjust this task's default future duration.",
+    "用ActualTime调整未来Plan":"Use actual time to adjust future plans",
+    "Resume执行，系统会逐渐Study你的真实节奏。":"Continue working; the system will gradually learn your real pace.",
+    " 个未来RepeatTask":" future recurring tasks","没There are可调整的RepeatTask":"No recurring tasks to adjust",
+    "已移入Today $":"Moved to Today $","编辑Task":"Edit Task","修改Task，系统会Resume记录Plan与Actual。":"Edit the task; the system keeps planned and actual time.",
+    "Natural language works too，Example:明天下午3点和老师电话，10 minutes beforeReminder。":"Natural language works too. Example: Call teacher tomorrow at 3 PM, 10 minutes before.",
+    "我要Done什么？":"What do I want to do?","⌕ 用Quick create":"⌕ Quick create",
+    "普通Task · 不计时":"Regular Task · No Timer","不Urgent":"Not Urgent","1 · Today必须推动":"1 · Push Today",
+    "不Repeat":"No Repeat","不Reminder":"No Reminder","先写Task内容":"Enter a task first",
+    "Task已更新":"Task updated","Task已加入，并生成下一次":"Task added and next occurrence generated","Task已加入Plan":"Task added to Plan",
+    "先定义Goals，再让Project和Task服务于它。":"Define Goals first, then let Projects and Tasks support them.",
+    "Example:成为能够独立Done设计的人":"Example: Become able to design independently",
+    "这个Goals对我WhyImportant？":"Why is this Goal important to me?","先写Goals":"Enter a Goal first",
+    "第一个Project":"First Project","Goals已建立，下一步是Project":"Goal created. Next step: Project",
+    "新建Project":"New Project","Project名称":"Project name","建立Project":"Create Project",
+    "先写Project名称":"Enter a Project name first","Project已建立":"Project created",
+    "Today没There are未DonePriority 🎉":"No unfinished priority tasks today 🎉",
+    "这 simulates the visual":"This simulates the visual",
+    "Time、Date、顶部状态、Widget、Quick actions":"Time, Date, status, Widget, and Quick Actions",
+    "未定Time":"Time not set","解析Done，可以加入Plan":"Parsed. Ready to add to Plan",
+    "已把一句话变成Task":"Turned one sentence into a Task","先Enter one sentence":"Enter one sentence first",
+    "▶ 立即Start下一件":"▶ Start Next Task",
+    "早上":"morning","上午":"morning","下午":"afternoon","晚上":"evening",
+    "周一":"Mon","周二":"Tue","周三":"Wed","周四":"Thu","周五":"Fri","周六":"Sat","周日":"Sun","周天":"Sun",
     "没有":"None","完成":"Complete","未完成":"Open","已完成":"Completed","编辑":"Edit","重做":"Redo","顺延":"Reschedule","记录":"Record",
-    "添加项目":"Add project","添加方向":"Add goal","新建":"Create new","关闭":"Close","确认":"Confirm","重置":"Reset","清空":"Clear",
-    "计划时间":"Planned time","实际时间":"Actual time","预计":"Planned","超时":"Overtime","多":"extra","少":"under","正在":"Running","已暂停":"Paused",
-    "当前":"Current","下一次":"Next","昨天":"Yesterday","明天":"Tomorrow","后天":"Day after tomorrow","每月":"Monthly","每年":"Yearly",
-    "保存成功":"Saved","已保存":"Saved","导入":"Import","导出备份":"Export backup","备份":"Backup",
-    "任务列表":"Task list","任务池":"Task pool","今日":"Today","今日计划":"Today’s plan","今日重点":"Today’s priorities","每日":"Daily",
-    "目标":"Goal","目标进度":"Goal progress","项目进度":"Project progress","空":"Empty","暂无":"None yet","更多":"More",
-    "普通任务 · 不计时":"Regular task · No timer","学习 · 可计时":"Study · Timer enabled"
+    "添加项目":"Add Project","添加方向":"Add Goal","新建":"Create New","关闭":"Close","确认":"Confirm","重置":"Reset","清空":"Clear",
+    "计划时间":"Planned Time","实际时间":"Actual Time","预计":"Planned","超时":"Overtime","多":"extra","少":"under","正在":"Running","已暂停":"Paused",
+    "当前":"Current","下一次":"Next","昨天":"Yesterday","后天":"Day after tomorrow","每月":"Monthly","每年":"Yearly",
+    "保存成功":"Saved","已保存":"Saved","导入":"Import","导出备份":"Export Backup","备份":"Backup",
+    "任务列表":"Task List","任务池":"Task Pool","今日":"Today","今日计划":"Today's Plan","今日重点":"Today's Priorities","每日":"Daily",
+    "目标":"Goal","目标进度":"Goal Progress","项目进度":"Project Progress","空":"Empty","暂无":"None yet","更多":"More"
   };
   function normalize(root=document.body){
-    const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT); const nodes=[]; while(w.nextNode()) nodes.push(w.currentNode);
-    nodes.forEach(n=>{let s=n.nodeValue; for(const [a,b] of Object.entries(replacements)) s=s.split(a).join(b); if(s!==n.nodeValue)n.nodeValue=s;});
-    root.querySelectorAll('input[placeholder],textarea[placeholder]').forEach(e=>{for(const [a,b] of Object.entries(replacements))e.placeholder=e.placeholder.split(a).join(b)});
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n=>{
+      let s=n.nodeValue;
+      for(const [a,b] of Object.entries(replacements)) if(s.includes(a)) s=s.split(a).join(b);
+      if(s!==n.nodeValue)n.nodeValue=s;
+    });
+    root.querySelectorAll('input[placeholder],textarea[placeholder],option').forEach(e=>{
+      for(const [a,b] of Object.entries(replacements)){
+        if(e.placeholder?.includes(a)) e.placeholder=e.placeholder.split(a).join(b);
+        if(e.textContent?.includes(a)) e.textContent=e.textContent.split(a).join(b);
+      }
+    });
   }
-  const oldRender=window.render; if(typeof oldRender==='function'){window.render=function(){oldRender();normalize();};}
-  document.addEventListener('DOMContentLoaded',()=>normalize());
-  setTimeout(normalize,50); setTimeout(normalize,300);
+  const run=()=>normalize(document.body);
+  const oldRender=window.render;
+  if(typeof oldRender==='function') window.render=function(){oldRender();run();};
+  document.addEventListener('DOMContentLoaded',run);
+  window.addEventListener('load',run);
+  const observer=new MutationObserver(()=>run());
+  observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+  setTimeout(run,50);setTimeout(run,300);setTimeout(run,1000);
 })();
 </script>
 
