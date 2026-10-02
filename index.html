@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7f3ee">
-<title>FlowOS V0.2 — Personal Operating System</title>
+<title>FlowOS — Personal Operating System</title>
 <style>
 :root{
   --bg:#f7f3ee; --paper:#fffdf9; --ink:#26242a; --muted:#8b8790;
@@ -88,7 +88,7 @@ box-shadow:0 14px 35px rgba(118,101,216,.12)}
 .ios-note{font-size:11px;line-height:1.6;color:#77717a;padding:9px 5px 0}
 
 
-/* iOS 锁屏弹窗 / Notification Center prototype */
+/* iOS Lock-screen notification / Notification Center prototype */
 .ios-notify-demo{position:relative;width:min(100%,382px);min-height:620px;border-radius:40px;overflow:hidden;padding:15px;color:white;
 background:radial-gradient(circle at 25% 20%,rgba(255,255,255,.62),transparent 20%),radial-gradient(circle at 75% 35%,rgba(145,124,183,.52),transparent 30%),linear-gradient(145deg,#bbb7ba,#7d8095);
 box-shadow:0 25px 60px rgba(30,25,35,.25)}
@@ -182,7 +182,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 <header>
   <div class="headrow">
     <div><div class="eyebrow">PERSONAL OPERATING SYSTEM</div><div class="date" id="headDate"></div></div>
-    <button class="iconbtn" onclick="showLock()" title="查看 iPhone 锁屏原型">⌁</button>
+    <button class="iconbtn" onclick="showLock()" title="View iPhone 锁屏原型">⌁</button>
   </div>
 </header>
 
@@ -190,13 +190,13 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 <section id="today" class="screen active">
   <div class="today-workspace">
     <aside class="task-pool">
-      <div class="pool-head"><div><div class="pool-title">今天</div><div class="pool-date" id="poolDate"></div></div><button class="iconbtn" onclick="openTaskModal()">＋</button></div>
-      <div class="pool-tabs" id="poolTabs"><button data-filter="all" class="on" onclick="setPoolFilter('all')">全部</button><button data-filter="study" onclick="setPoolFilter('study')">学习</button><button data-filter="task" onclick="setPoolFilter('task')">任务</button><button data-filter="life" onclick="setPoolFilter('life')">生活</button><button data-filter="work" onclick="setPoolFilter('work')">工作</button></div>
-      <div class="pool-search"><input id="quickInput" value="" placeholder="搜索任务…" oninput="setPoolQuery(this.value)"><button onclick="openTaskModal()">＋</button></div>
+      <div class="pool-head"><div><div class="pool-title">Today</div><div class="pool-date" id="poolDate"></div></div><button class="iconbtn" onclick="openTaskModal()">＋</button></div>
+      <div class="pool-tabs" id="poolTabs"><button data-filter="all" class="on" onclick="setPoolFilter('all')">All</button><button data-filter="study" onclick="setPoolFilter('study')">Study</button><button data-filter="task" onclick="setPoolFilter('task')">Task</button><button data-filter="life" onclick="setPoolFilter('life')">Life</button><button data-filter="work" onclick="setPoolFilter('work')">Work</button></div>
+      <div class="pool-search"><input id="quickInput" value="" placeholder="SearchTask…" oninput="setPoolQuery(this.value)"><button onclick="openTaskModal()">＋</button></div>
       <div class="pool-list" id="taskPool"></div>
     </aside>
     <section class="board-wrap">
-      <div class="board-titlebar"><div><div class="board-title">重要 × 紧急 四象限 <button class="info-btn" onclick="openPriorityHelp()" title="查看拖动规则">ⓘ</button></div><div class="board-sub">把任务拖到不同区域调整重要程度和紧急程度</div></div><div class="view-switch"><button id="quadrantViewBtn" onclick="setBoardView('quadrant')">▦ 四象限视图</button><button id="listViewBtn" onclick="setBoardView('list')">☷ 列表视图</button></div></div>
+      <div class="board-titlebar"><div><div class="board-title">Important × Urgent Quadrants <button class="info-btn" onclick="openPriorityHelp()" title="View拖动规则">ⓘ</button></div><div class="board-sub">把Task拖到不同区域调整Important程度和Urgent程度</div></div><div class="view-switch"><button id="quadrantViewBtn" onclick="setBoardView('quadrant')">▦ Quadrants视图</button><button id="listViewBtn" onclick="setBoardView('list')">☷ List视图</button></div></div>
       <div id="priorityBoard"></div>
       <div class="today-focus" id="todayFocusDock"></div>
     </section>
@@ -204,22 +204,22 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 </section>
 
 <section id="plan" class="screen">
-  <div class="sectiontitle">PLAN · 从目标落到今天</div>
+  <div class="sectiontitle">PLAN · 从目标落到Today</div>
   <div class="tabs" id="planTabs"></div>
   <div class="card" id="planSummary"></div>
   <div class="card" id="planList"></div>
 </section>
 
 <section id="goals" class="screen">
-  <div class="row between" style="margin:6px 2px 10px"><div><div class="sectiontitle" style="margin:0">DIRECTION</div><h2 style="margin:3px 0">我想成为谁？</h2></div><div class="row"><button class="secondary" onclick="openProjectModal()">＋项目</button><button class="secondary" onclick="openGoalModal()">＋目标</button></div></div>
-  <div class="card"><div class="barlabel"><span>长期方向清晰度</span><b id="goalHealth">0%</b></div>
+  <div class="row between" style="margin:6px 2px 10px"><div><div class="sectiontitle" style="margin:0">DIRECTION</div><h2 style="margin:3px 0">我想成为谁？</h2></div><div class="row"><button class="secondary" onclick="openProjectModal()">＋Project</button><button class="secondary" onclick="openGoalModal()">＋目标</button></div></div>
+  <div class="card"><div class="barlabel"><span>长期Goals清晰度</span><b id="goalHealth">0%</b></div>
 <div class="plan-summary">
-  <div class="plan-stat"><span class="small">计划</span><b id="plannedTotal">0m</b></div>
-  <div class="plan-stat"><span class="small">实际</span><b id="actualTotal">0m</b></div>
-  <div class="plan-stat"><span class="small">完成率</span><b id="completionRate">0%</b></div>
+  <div class="plan-stat"><span class="small">Plan</span><b id="plannedTotal">0m</b></div>
+  <div class="plan-stat"><span class="small">Actual</span><b id="actualTotal">0m</b></div>
+  <div class="plan-stat"><span class="small">Done率</span><b id="completionRate">0%</b></div>
 </div>
 
-<div class="progress"><i id="goalHealthBar" style="width:0%"></i></div><p class="small muted" style="margin:9px 0 0">目标不是待办。目标负责决定“为什么做”，项目负责决定“做什么”，任务负责决定“现在做什么”。</p></div>
+<div class="progress"><i id="goalHealthBar" style="width:0%"></i></div><p class="small muted" style="margin:9px 0 0">目标不是待办。目标负责决定“Why做”，Project负责决定“做什么”，Task负责决定“现在做什么”。</p></div>
   <div id="goalList"></div>
 </section>
 
@@ -227,25 +227,25 @@ main{padding:18px 22px 115px}.screen.active{display:block}
   <div class="sectiontitle">FOCUS · 专注</div>
   <div class="card hero">
     <div class="big" style="font-size:24px">现在只做一件事。</div>
-    <p>选择任务，直接开始计时。预计时间只是计划，超过后继续计时，直到你结束。</p>
+    <p>选择Task，直接Start计时。预计Time只是Plan，超过后Resume计时，直到你结束。</p>
   </div>
   <div class="card" id="startPicker"></div>
   <div class="card" id="startEngine"></div>
 </section>
 
 <section id="review" class="screen">
-  <div class="sectiontitle">REVIEW · 让计划越来越像真实的你</div>
+  <div class="sectiontitle">REVIEW · 让Plan越来越像真实的你</div>
   <div class="grid2" id="metrics"></div>
   <div class="card" style="margin-top:13px">
-    <h3>计划可信度</h3>
-    <p class="small muted">系统比较“计划用时”和“实际用时”。不是为了惩罚，而是为了下一次少做错误估算。</p>
+    <h3>Plan可信度</h3>
+    <p class="small muted">系统比较“Plan用时”和“Actual用时”。不是为了惩罚，而是为了下一次少做错误估算。</p>
     <div id="credibility"></div>
   </div>
   <div class="card"><h3>自动调整建议</h3><div id="adjustments"></div></div>
   <div class="card"><h3>本周执行记录</h3><div id="weekly"></div></div>
   <div class="card history-card">
-    <div class="row between"><div><h3 style="margin-bottom:4px">历史记录</h3><div class="small muted">本机保存，不同步 GitHub。每天可一键把昨天归档。</div></div><button class="primary" onclick="archiveYesterday()">一键导入昨日</button></div>
-    <div class="history-tools"><input id="historySearch" placeholder="搜索日期、任务、项目…" oninput="renderHistory()"><button class="secondary" onclick="exportHistory()">导出</button><button class="secondary" onclick="document.getElementById('historyFile').click()">导入备份</button><input id="historyFile" type="file" accept="application/json" style="display:none" onchange="importHistoryFile(event)"></div>
+    <div class="row between"><div><h3 style="margin-bottom:4px">History记录</h3><div class="small muted">本机Save，不同步 GitHub。Daily可一键把昨天归档。</div></div><button class="primary" onclick="archiveYesterday()">Import yesterday</button></div>
+    <div class="history-tools"><input id="historySearch" placeholder="SearchDate、Task、Project…" oninput="renderHistory()"><button class="secondary" onclick="exportHistory()">Export</button><button class="secondary" onclick="document.getElementById('historyFile').click()">Import backup</button><input id="historyFile" type="file" accept="application/json" style="display:none" onchange="importHistoryFile(event)"></div>
     <div id="historyList"></div>
   </div>
 </section>
@@ -253,11 +253,11 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 
 <button class="fab" onclick="openTaskModal()">＋</button>
 <nav class="nav">
- <button data-nav="today" class="active" onclick="nav('today')"><span class="ni">◉</span>今天</button>
- <button data-nav="plan" onclick="nav('plan')"><span class="ni">▤</span>计划</button>
- <button data-nav="goals" onclick="nav('goals')"><span class="ni">◎</span>方向</button>
+ <button data-nav="today" class="active" onclick="nav('today')"><span class="ni">◉</span>Today</button>
+ <button data-nav="plan" onclick="nav('plan')"><span class="ni">▤</span>Plan</button>
+ <button data-nav="goals" onclick="nav('goals')"><span class="ni">◎</span>Goals</button>
  <button data-nav="start" onclick="nav('start')"><span class="ni">▶</span>专注</button>
- <button data-nav="review" onclick="nav('review')"><span class="ni">↗</span>复盘</button>
+ <button data-nav="review" onclick="nav('review')"><span class="ni">↗</span>Review</button>
 </nav>
 </div>
 
@@ -268,7 +268,7 @@ main{padding:18px 22px 115px}.screen.active{display:block}
 const KEY="flowos_v05_clean_state";
 const isoToday=()=>new Date().toISOString().slice(0,10);
 const uid=()=>Math.random().toString(36).slice(2,9);
-const fmtDate=d=>new Date(d+"T12:00:00").toLocaleDateString("zh-CN",{month:"long",day:"numeric",weekday:"short"});
+const fmtDate=d=>new Date(d+"T12:00:00").toLocaleDateString("en-AU",{month:"long",day:"numeric",weekday:"short"});
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 var timer=null;
 let state=load();
@@ -284,7 +284,7 @@ function normalizeTaskKinds(){
  (state.tasks||[]).forEach(t=>{
    if(t.kind!=="study" && t.kind!=="task"){
      const title=String(t.title||"");
-     t.kind=(t.projectId==="p1" || /学习|阅读|看书|作业|AS2870|笔记|复习/.test(title))?"study":"task";
+     t.kind=(t.projectId==="p1" || /Study|阅读|看书|作业|AS2870|笔记|复习/.test(title))?"study":"task";
    }
    if(!Number.isFinite(Number(t.importance))) t.importance=Math.max(1,Math.min(5,6-(Number(t.priority)||3)));
    if(typeof t.urgent!=="boolean") t.urgent=!!t.time && /^(0[7-9]|1[0-2]):/.test(t.time||"");
@@ -391,7 +391,7 @@ function renderToday(){
  const qi=document.getElementById('quickInput');if(qi&&qi.value!==(state.ui?.poolQuery||""))qi.value=state.ui?.poolQuery||"";
  const pool=document.getElementById('taskPool');
  if(pool){
-   pool.innerHTML=filtered.length?filtered.map(poolTaskHTML).join(''):`<div class="empty">没有匹配的任务</div>`;
+   pool.innerHTML=filtered.length?filtered.map(poolTaskHTML).join(''):`<div class="empty">没There are匹配的Task</div>`;
    bindPoolDrag();
  }
  renderPriorityBoard();
@@ -401,32 +401,32 @@ function taskCategory(t){
  if(t.kind==='study') return 'study';
  if(t.category==='life'||t.category==='work'||t.category==='task') return t.category;
  const title=String(t.title||'');
- if(/会议|项目|邮件|汇报|资料|电话|老师/.test(title)) return 'work';
+ if(/会议|Project|邮件|汇报|资料|电话|老师/.test(title)) return 'work';
  if(/散步|材料|桌面|健身|买菜|家务/.test(title)) return 'life';
  return 'task';
 }
-function setPoolFilter(filter){state.ui.poolFilter=filter;save();renderToday();toast(filter==='all'?'显示全部任务':`已筛选：${filter==='study'?'学习':filter==='task'?'任务':filter==='life'?'生活':'工作'}`)}
+function setPoolFilter(filter){state.ui.poolFilter=filter;save();renderToday();toast(filter==='all'?'显示AllTask':`已Filter：${filter==='study'?'Study':filter==='task'?'Task':filter==='life'?'Life':'Work'}`)}
 function setPoolQuery(value){state.ui.poolQuery=value;save();renderToday()}
 function setBoardView(mode){state.ui.boardView=mode;save();renderPriorityBoard()}
-function openPriorityHelp(){document.getElementById('modalBody').innerHTML=`<h2 style="margin:0">四象限怎么用</h2><p class="small muted">这里不是固定顺序，而是用拖动调整优先级。</p><div class="card" style="margin:12px 0 8px"><b>拖到其他象限</b><div class="small muted" style="margin-top:5px">改变重要 / 紧急属性。</div></div><div class="card" style="margin:0 0 8px"><b>同一象限拖到另一张卡上方</b><div class="small muted" style="margin-top:5px">调整 1–5 级重要程度。</div></div><div class="card" style="margin:0"><b>学习 vs 任务</b><div class="small muted" style="margin-top:5px">学习类才有计时器；普通任务不计时。</div></div><div class="formactions"><button class="primary" style="width:100%" onclick="closeModal()">知道了</button></div>`;showModal()}
+function openPriorityHelp(){document.getElementById('modalBody').innerHTML=`<h2 style="margin:0">Quadrants怎么用</h2><p class="small muted">这里不是固定顺序，而是用拖动调整Priority。</p><div class="card" style="margin:12px 0 8px"><b>拖到其他象限</b><div class="small muted" style="margin-top:5px">改变Important / Urgent属性。</div></div><div class="card" style="margin:0 0 8px"><b>同一象限拖到另一张卡上方</b><div class="small muted" style="margin-top:5px">调整 1–5 级Important程度。</div></div><div class="card" style="margin:0"><b>Study vs Task</b><div class="small muted" style="margin-top:5px">Study类才There are计时器；普通Task不计时。</div></div><div class="formactions"><button class="primary" style="width:100%" onclick="closeModal()">知道了</button></div>`;showModal()}
 function poolTaskHTML(t){
  const study=t.kind==='study';
  return `<div class="pool-task" data-pool-id="${esc(t.id)}" draggable="true">
    <span class="qdrag">⠿</span>
    <button class="pool-check ${t.status==='done'?'done':''}" onclick="event.stopPropagation();toggleTask('${t.id}')">${t.status==='done'?'✓':''}</button>
-   <div class="pool-main" onclick="openEditTask('${t.id}')"><div class="pool-name ${t.status==='done'?'done':''}">${esc(t.title)}</div><div class="pool-meta"><span class="pool-stars">${stars(t.importance)}</span><span class="pool-tag ${study?'study':''}">${study?'学习':(taskCategory(t)==='life'?'生活':taskCategory(t)==='work'?'工作':'任务')}</span>${t.time?`<span class="pool-time">${esc(t.time)}</span>`:''}${study&&t.duration?`<span class="pool-time">◷ ${t.duration}分钟</span>`:''}</div></div>
+   <div class="pool-main" onclick="openEditTask('${t.id}')"><div class="pool-name ${t.status==='done'?'done':''}">${esc(t.title)}</div><div class="pool-meta"><span class="pool-stars">${stars(t.importance)}</span><span class="pool-tag ${study?'study':''}">${study?'Study':(taskCategory(t)==='life'?'Life':taskCategory(t)==='work'?'Work':'Task')}</span>${t.time?`<span class="pool-time">${esc(t.time)}</span>`:''}${study&&t.duration?`<span class="pool-time">◷ ${t.duration}min</span>`:''}</div></div>
  </div>`;
 }
 var poolDraggedId=null;
 function bindPoolDrag(){
- document.querySelectorAll('.pool-task').forEach(el=>{el.addEventListener('dragstart',function(e){poolDraggedId=this.dataset.poolId;this.classList.add('dragging');e.dataTransfer.setData('text/plain',poolDraggedId);e.dataTransfer.effectAllowed='move'});el.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drop-target')});el.addEventListener('dragleave',function(){this.classList.remove('drop-target')});el.addEventListener('drop',function(e){e.preventDefault();const from=poolDraggedId||e.dataTransfer.getData('text/plain'),to=this.dataset.poolId;if(from&&to&&from!==to){const arr=importanceSorted(state.tasks.filter(t=>t.date===isoToday()));const a=arr.findIndex(t=>String(t.id)===String(from)),b=arr.findIndex(t=>String(t.id)===String(to));if(a>=0&&b>=0){const [m]=arr.splice(a,1);arr.splice(b,0,m);arr.forEach((t,i)=>{t.importanceOrder=i+1;t.importance=Math.max(1,Math.min(5,5-Math.min(4,i)));t.priority=t.importance>=5?1:(t.importance>=3?2:3)});save();render();toast('重要程度已调整')}}});el.addEventListener('dragend',function(){document.querySelectorAll('.pool-task').forEach(x=>x.classList.remove('dragging','drop-target'));poolDraggedId=null})});
+ document.querySelectorAll('.pool-task').forEach(el=>{el.addEventListener('dragstart',function(e){poolDraggedId=this.dataset.poolId;this.classList.add('dragging');e.dataTransfer.setData('text/plain',poolDraggedId);e.dataTransfer.effectAllowed='move'});el.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drop-target')});el.addEventListener('dragleave',function(){this.classList.remove('drop-target')});el.addEventListener('drop',function(e){e.preventDefault();const from=poolDraggedId||e.dataTransfer.getData('text/plain'),to=this.dataset.poolId;if(from&&to&&from!==to){const arr=importanceSorted(state.tasks.filter(t=>t.date===isoToday()));const a=arr.findIndex(t=>String(t.id)===String(from)),b=arr.findIndex(t=>String(t.id)===String(to));if(a>=0&&b>=0){const [m]=arr.splice(a,1);arr.splice(b,0,m);arr.forEach((t,i)=>{t.importanceOrder=i+1;t.importance=Math.max(1,Math.min(5,5-Math.min(4,i)));t.priority=t.importance>=5?1:(t.importance>=3?2:3)});save();render();toast('Important程度Adjusted')}}});el.addEventListener('dragend',function(){document.querySelectorAll('.pool-task').forEach(x=>x.classList.remove('dragging','drop-target'));poolDraggedId=null})});
 }
 function renderTodayFocusDock(){
  const host=document.getElementById('todayFocusDock'); if(!host)return;
  if(!state.focus||!state.focus.running){
    const t=state.tasks.find(x=>x.id===state.activeTaskId&&x.kind==='study'&&x.status!=='done')||state.tasks.find(x=>x.date===isoToday()&&x.kind==='study'&&x.status!=='done');
-   if(!t){host.innerHTML='<div class="empty" style="padding:24px">选择一个学习任务开始专注。普通任务不计时。</div>';return;}
-   host.innerHTML=`<div class="row between"><div><b>${escapeHtml(t.title)}</b><div class="small muted">学习类任务 · 预计 ${Number(t.duration)||0} 分钟</div></div><button class="primary" onclick="beginFocus('${t.id}',${Number(t.duration)||5})">▶ 开始学习</button></div>`;return;
+   if(!t){host.innerHTML='<div class="empty" style="padding:24px">选择一个StudyTaskStart专注。普通Task不计时。</div>';return;}
+   host.innerHTML=`<div class="row between"><div><b>${escapeHtml(t.title)}</b><div class="small muted">Study类Task · 预计 ${Number(t.duration)||0} min</div></div><button class="primary" onclick="beginFocus('${t.id}',${Number(t.duration)||5})">▶ StartStudy</button></div>`;return;
  }
  // renderFocus() owns the actual timer markup
  renderFocus();
@@ -437,7 +437,7 @@ function boardTaskHTML(t){
  const study=t.kind==="study";
  return `<div class="qtask" draggable="true" data-qtask-id="${esc(t.id)}" data-kind="${study?'study':'task'}">
    <span class="qdrag">⠿</span><button class="qcheck ${t.status==="done"?'done':''}" onclick="event.stopPropagation();toggleTask('${t.id}')">${t.status==="done"?'✓':''}</button>
-   <div class="qmain" onclick="openEditTask('${t.id}')"><div class="qtitle ${t.status==="done"?'done':''}">${esc(t.title)}</div><div class="qmeta"><span class="qstars">${stars(t.importance)}</span><span class="qchip ${study?'study':''}">${study?'学习':'任务'}</span>${t.duration?`<span class="qchip">${t.duration}m</span>`:''}</div></div>
+   <div class="qmain" onclick="openEditTask('${t.id}')"><div class="qtitle ${t.status==="done"?'done':''}">${esc(t.title)}</div><div class="qmeta"><span class="qstars">${stars(t.importance)}</span><span class="qchip ${study?'study':''}">${study?'Study':'Task'}</span>${t.duration?`<span class="qchip">${t.duration}m</span>`:''}</div></div>
    ${study&&t.status!=="done"?`<button class="qstart" onclick="event.stopPropagation();startTask('${t.id}')">▶</button>`:''}
  </div>`;
 }
@@ -447,16 +447,16 @@ function renderPriorityBoard(){
  const groups={importantUrgent:[],important:[],urgent:[],normal:[]};
  ts.forEach(t=>{const k=quadrantKey(t); if(k==='urgent_important')groups.importantUrgent.push(t); else if(k==='notUrgent_important')groups.important.push(t); else if(k==='urgent_normal')groups.urgent.push(t); else groups.normal.push(t);});
  Object.values(groups).forEach(a=>a.sort((x,y)=>(Number(y.importance)||1)-(Number(x.importance)||1)||(Number(x.importanceOrder)||99)-(Number(y.importanceOrder)||99)));
- const q=(cls,badge,name,desc,arr,key)=>`<div class="quadrant ${cls}" data-quadrant="${key}"><div class="qhead"><div class="row" style="gap:7px"><span class="qbadge">${badge}</span><div><div class="qname">${name}</div><div class="qdesc">${desc}</div></div></div><span class="qcount">${arr.length}</span></div><div class="qtasks">${arr.length?arr.map(boardTaskHTML).join(''):`<div class="qempty">拖任务到这里</div>`}</div></div>`;
+ const q=(cls,badge,name,desc,arr,key)=>`<div class="quadrant ${cls}" data-quadrant="${key}"><div class="qhead"><div class="row" style="gap:7px"><span class="qbadge">${badge}</span><div><div class="qname">${name}</div><div class="qdesc">${desc}</div></div></div><span class="qcount">${arr.length}</span></div><div class="qtasks">${arr.length?arr.map(boardTaskHTML).join(''):`<div class="qempty">拖Task到这里</div>`}</div></div>`;
  const all=importanceSorted(ts);
  if((state.ui?.boardView||"quadrant")==="list") {
-   const labels={importantUrgent:'I 重要且紧急',important:'II 重要但不紧急',urgent:'III 紧急但不重要',normal:'IV 不重要也不紧急'};
-   host.innerHTML=`<div class="priority-board"><div class="priority-head"><div><div class="priority-sub">列表视图：直接上下拖动调整 1–5 级重要程度。</div><div class="priority-legend"><span class="chip green">学习 · 可计时</span><span class="chip">任务 · 不计时</span></div></div><span class="chip purple">${all.length} 项</span></div><div class="board-list-view">${all.length?all.map(t=>`<div><div class="small muted" style="margin:0 3px 4px">${labels[quadrantKey(t)]}</div>${boardTaskHTML(t)}</div>`).join(''):`<div class="qempty">今天没有任务</div>`}</div><div class="priority-note">列表排序只调整重要程度；时间仍由任务自己的时间字段决定。</div></div>`;
+   const labels={importantUrgent:'I Important且Urgent',important:'II Important但不Urgent',urgent:'III Urgent但不Important',normal:'IV 不Important也不Urgent'};
+   host.innerHTML=`<div class="priority-board"><div class="priority-head"><div><div class="priority-sub">List视图：直接上下拖动调整 1–5 级Important程度。</div><div class="priority-legend"><span class="chip green">Study · 可计时</span><span class="chip">Task · 不计时</span></div></div><span class="chip purple">${all.length}  items</span></div><div class="board-list-view">${all.length?all.map(t=>`<div><div class="small muted" style="margin:0 3px 4px">${labels[quadrantKey(t)]}</div>${boardTaskHTML(t)}</div>`).join(''):`<div class="qempty">Today没There areTask</div>`}</div><div class="priority-note">List排序只调整Important程度；Time仍由Task自己的Time字段决定。</div></div>`;
    bindPriorityDrag();
    document.getElementById('quadrantViewBtn')?.classList.remove('on');document.getElementById('listViewBtn')?.classList.add('on');
    return;
  }
- host.innerHTML=`<div class="priority-board"><div class="priority-head"><div><div class="priority-sub">任务卡直接拖动：跨象限改变重要/紧急；同象限上下拖动调整 1–5 级重要程度。</div><div class="priority-legend"><span class="chip green">学习 · 可计时</span><span class="chip">任务 · 不计时</span></div></div><span class="chip purple">拖动调整</span></div><div class="priority-grid">${q('q-important-urgent','I','重要且紧急','现在处理',groups.importantUrgent,'importantUrgent')}${q('q-important','II','重要但不紧急','计划推进',groups.important,'important')}${q('q-urgent','III','紧急但不重要','尽快处理/委托',groups.urgent,'urgent')}${q('q-normal','IV','不重要也不紧急','有空再做',groups.normal,'normal')}</div><div class="priority-note">⭐ 级别越高越重要。时间轴仍按时间显示，不会被拖动排序改变。</div></div>`;
+ host.innerHTML=`<div class="priority-board"><div class="priority-head"><div><div class="priority-sub">Task卡直接拖动：跨象限改变Important/Urgent；同象限上下拖动调整 1–5 级Important程度。</div><div class="priority-legend"><span class="chip green">Study · 可计时</span><span class="chip">Task · 不计时</span></div></div><span class="chip purple">拖动调整</span></div><div class="priority-grid">${q('q-important-urgent','I','Important且Urgent','现在处理',groups.importantUrgent,'importantUrgent')}${q('q-important','II','Important但不Urgent','Plan推进',groups.important,'important')}${q('q-urgent','III','Urgent但不Important','尽快处理/委托',groups.urgent,'urgent')}${q('q-normal','IV','不Important也不Urgent','There are空再做',groups.normal,'normal')}</div><div class="priority-note">⭐ 级别越高越Important。Time轴仍按Time显示，不会被拖动排序改变。</div></div>`;
  document.getElementById('quadrantViewBtn')?.classList.add('on');document.getElementById('listViewBtn')?.classList.remove('on');
  bindPriorityDrag();
 }
@@ -485,7 +485,7 @@ function onBoardTaskDrop(e){
  e.preventDefault();e.stopPropagation();this.classList.remove('drop-target');
  const fromId=boardDraggedId||e.dataTransfer.getData('text/plain'), toId=this.dataset.qtaskId; if(!fromId||fromId===toId)return;
  const t=task(fromId), target=task(toId); if(!t||!target)return;
- const key=quadrantKey(target); setQuadrant(t,key); reorderInQuadrant(t,key,toId); save();render();toast('已调整重要程度');
+ const key=quadrantKey(target); setQuadrant(t,key); reorderInQuadrant(t,key,toId); save();render();toast('AdjustedImportant程度');
 }
 function onQuadrantOver(e){e.preventDefault();this.classList.add('drop-hover');e.dataTransfer.dropEffect='move';}
 function onQuadrantLeave(){this.classList.remove('drop-hover')}
@@ -525,31 +525,31 @@ function onTaskDrop(e){
  if(fromIndex<0||toIndex<0)return;
  const [moved]=list.splice(fromIndex,1); list.splice(toIndex,0,moved);
  list.forEach((t,i)=>{t.importanceOrder=i+1;t.priority=i<3?1:(i<5?2:3)});
- save();render();toast('重要程度已重新排序');
+ save();render();toast('Important程度已重新排序');
 }
 function taskHTML(t){
  return `<div class="task" data-task-id="${t.id}">
-   <div class="drag-handle" title="拖动调整重要程度">☷</div>
+   <div class="drag-handle" title="拖动调整Important程度">☷</div>
    <button class="check ${t.status==="done"?"done":""}" onclick="toggleTask('${t.id}')">${t.status==="done"?"✓":""}</button>
    <div class="taskbody" onclick="openEditTask('${t.id}')">
     <div class="tasktitle ${t.status==="done"?"done":""}">${t.priority===1?'<span class="star">★ </span>':""}${esc(t.title)}</div>
     <div class="meta">
       ${t.time?`<span class="chip">${esc(t.time)}</span>`:""}<span class="chip">${t.duration}m</span>
       <span class="chip purple">${esc(projectName(t.projectId))}</span>
-      ${t.repeat?`<span class="chip green">↻ ${esc(t.repeat)}</span>`:""}${t.reminder?`<span class="chip orange">🔔 提前${t.reminder}m</span>`:""}
+      ${t.repeat?`<span class="chip green">↻ ${esc(t.repeat)}</span>`:""}${t.reminder?`<span class="chip orange">🔔 in advance${t.reminder}m</span>`:""}
     </div>
    </div>
-   ${t.status!=="done"?(t.kind==="study"?`<button class="ghost" title="开始学习计时" onclick="event.stopPropagation();startTask('${t.id}')">▶</button>`:``)+`<button class="ghost" title="明天" onclick="event.stopPropagation();deferTask('${t.id}',1)">→</button>`:""}
+   ${t.status!=="done"?(t.kind==="study"?`<button class="ghost" title="StartStudy计时" onclick="event.stopPropagation();startTask('${t.id}')">▶</button>`:``)+`<button class="ghost" title="明天" onclick="event.stopPropagation();deferTask('${t.id}',1)">→</button>`:""}
  </div>`;
 }
 function toggleTask(id){
  let t=task(id);if(!t)return;
  t.status=t.status==="done"?"todo":"done";
  if(t.status==="done" && t.kind!=="study")t.actual=0;
- save();render();toast(t.status==="done"?"已完成，记录执行时间":"已重新打开");
+ save();render();toast(t.status==="done"?"已Done，记录执行Time":"已重新打开");
 }
-function openStartForTop(){let t=state.tasks.find(t=>t.date===isoToday()&&t.status!=="done"&&t.kind==="study"&&t.priority===1)||state.tasks.find(t=>t.date===isoToday()&&t.status!=="done"&&t.kind==="study");if(t){state.activeTaskId=t.id;save();nav("start")}else toast("今天没有学习类任务可计时");}
-function startTask(id){const t=task(id);if(!t)return;if(t.kind!=="study"){toast("普通任务不计时，直接完成即可");return}state.activeTaskId=id;save();beginFocus(id,t.duration||5)}
+function openStartForTop(){let t=state.tasks.find(t=>t.date===isoToday()&&t.status!=="done"&&t.kind==="study"&&t.priority===1)||state.tasks.find(t=>t.date===isoToday()&&t.status!=="done"&&t.kind==="study");if(t){state.activeTaskId=t.id;save();nav("start")}else toast("Today没There areStudy类Task可计时");}
+function startTask(id){const t=task(id);if(!t)return;if(t.kind!=="study"){toast("普通Task不计时，直接Done即可");return}state.activeTaskId=id;save();beginFocus(id,t.duration||5)}
 
 function fmtClock(sec){
  sec=Math.max(0,Math.floor(sec));
@@ -600,7 +600,7 @@ function updateQuickStartBar(){
 function renderStartPicker(){
  const host=document.getElementById('startPicker'); if(!host)return;
  const ts=state.tasks.filter(t=>t.date===isoToday()&&t.status!=='done'&&t.kind==='study').sort((a,b)=>(Number(b.importance)||1)-(Number(a.importance)||1)||(a.time||'99:99').localeCompare(b.time||'99:99'));
- host.innerHTML=`<div class="row between"><div><b>学习任务</b><div class="small muted">只有学习类任务会进入计时器；普通任务不计时。</div></div><span class="chip green">${ts.length} 项</span></div>${ts.length?ts.map(t=>`<div class="task" style="margin-top:7px"><div class="drag-handle">★</div><div class="taskbody"><div class="tasktitle">${escapeHtml(t.title)}</div><div class="meta"><span class="chip green">学习</span><span class="chip">预计 ${Number(t.duration)||0}m</span><span class="chip purple">${stars(t.importance)}</span></div></div><button class="primary" style="padding:8px 10px" onclick="beginFocus('${t.id}',${Number(t.duration)||5})">▶ 开始</button></div>`).join(''):`<div class="empty" style="padding:25px 10px">今天没有未完成的学习任务。<br><span class="small">普通任务请直接完成，不需要计时。</span></div>`}`;
+ host.innerHTML=`<div class="row between"><div><b>StudyTask</b><div class="small muted">只There areStudy类Task会进入计时器；普通Task不计时。</div></div><span class="chip green">${ts.length}  items</span></div>${ts.length?ts.map(t=>`<div class="task" style="margin-top:7px"><div class="drag-handle">★</div><div class="taskbody"><div class="tasktitle">${escapeHtml(t.title)}</div><div class="meta"><span class="chip green">Study</span><span class="chip">预计 ${Number(t.duration)||0}m</span><span class="chip purple">${stars(t.importance)}</span></div></div><button class="primary" style="padding:8px 10px" onclick="beginFocus('${t.id}',${Number(t.duration)||5})">▶ Start</button></div>`).join(''):`<div class="empty" style="padding:25px 10px">Today没There are未Done的StudyTask。<br><span class="small">普通Task请直接Done，不需要计时。</span></div>`}`;
 }
 
 function renderFocus(){
@@ -632,8 +632,8 @@ function renderFocus(){
  host.innerHTML=`
  <div class="focus-live-card ${over?'focus-over':''}">
    <div class="focus-live-head">
-     <div><div class="focus-live-label">正在计时</div><div class="focus-live-task">${escapeHtml(t.title||t.name||"任务")}</div></div>
-     <div class="focus-live-label">${over?'已超过计划':'专注中'}</div>
+     <div><div class="focus-live-label">正在计时</div><div class="focus-live-task">${escapeHtml(t.title||t.name||"Task")}</div></div>
+     <div class="focus-live-label">${over?'已超过Plan':'专注中'}</div>
    </div>
    <div class="focus-ring-wrap">
      <div class="focus-ring" style="--p:${p}%">
@@ -644,15 +644,15 @@ function renderFocus(){
      </div>
    </div>
    <div class="focus-meta">
-     <span class="focus-pill">预计 ${safePlanned} 分钟</span>
-     <span class="focus-pill">实际 ${display}</span>
+     <span class="focus-pill">预计 ${safePlanned} min</span>
+     <span class="focus-pill">Actual ${display}</span>
    </div>
    <div class="focus-actions">
      <button class="focus-minimize" onclick="focusMinimize()">隐藏计时</button>
-     <button class="focus-minimize pause-btn" onclick="togglePauseFocus()">${state.focus.paused?'▶ 继续':'Ⅱ 暂停'}</button>
-     <button class="focus-finish" onclick="stopFocus()">✓ 完成并记录</button>
+     <button class="focus-minimize pause-btn" onclick="togglePauseFocus()">${state.focus.paused?'▶ Resume':'Ⅱ Pause'}</button>
+     <button class="focus-finish" onclick="stopFocus()">✓ Done并记录</button>
    </div>
-   <div class="focus-note">${state.focus.paused?'已暂停，继续后从累计时间接着学习。':'预计时间只是目标，超过后继续记录实际学习时间。'}</div>
+   <div class="focus-note">${state.focus.paused?'已Pause，Resume后从累计Time接着Study。':'预计Time只是目标，超过后Resume记录ActualStudyTime。'}</div>
  </div>`;
 }
 
@@ -661,17 +661,17 @@ function setActive(id){state.activeTaskId=id;save();renderFocus()}
 function quickAdd(){
  const el=document.getElementById("quickInput"); if(!el||!el.value.trim())return;
  const raw=el.value.trim(); let name=raw,time="",duration=30;
- const tm=raw.match(/(?:今天|明天|后天|周[一二三四五六日天])?\s*(?:上午|下午|晚上|早上)?\s*(\d{1,2})(?:[:：](\d{2}))?\s*(?:点|时)/);
+ const tm=raw.match(/(?:Today|明天|后天|周[一二三四五六日天])?\s*(?:上午|下午|晚上|早上)?\s*(\d{1,2})(?:[:：](\d{2}))?\s*(?:点|时)/);
  if(tm){let h=+tm[1],m=+(tm[2]||0);if(/下午|晚上/.test(tm[0])&&h<12)h+=12;time=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0");name=name.replace(tm[0],"").trim()}
- const dm=raw.match(/(\d+(?:\.\d+)?)\s*(小时|h|分钟|min)/i);
- if(dm){duration=/小时|h/i.test(dm[2])?Math.round(+dm[1]*60):Math.round(+dm[1]);name=name.replace(dm[0],"").trim()}
- name=name.replace(/^(今天|明天|后天|周[一二三四五六日天])\s*/,"").trim()||raw;
- const kind=/学习|阅读|看书|作业|复习|AS2870|笔记/.test(name)?"study":"task"; state.tasks.push({id:uid(),title:name,date:isoToday(),time,duration,actual:0,priority:3,importanceOrder:state.tasks.filter(x=>x.date===isoToday()).length+1,importance:3,urgent:!!time,kind,projectId:"",status:"todo",repeat:""});save();el.value="";render();toast(kind==="study"?"已加入学习任务":"已加入今天");
+ const dm=raw.match(/(\d+(?:\.\d+)?)\s*(hours|h|min|min)/i);
+ if(dm){duration=/hours|h/i.test(dm[2])?Math.round(+dm[1]*60):Math.round(+dm[1]);name=name.replace(dm[0],"").trim()}
+ name=name.replace(/^(Today|明天|后天|周[一二三四五六日天])\s*/,"").trim()||raw;
+ const kind=/Study|阅读|看书|作业|复习|AS2870|笔记/.test(name)?"study":"task"; state.tasks.push({id:uid(),title:name,date:isoToday(),time,duration,actual:0,priority:3,importanceOrder:state.tasks.filter(x=>x.date===isoToday()).length+1,importance:3,urgent:!!time,kind,projectId:"",status:"todo",repeat:""});save();el.value="";render();toast(kind==="study"?"已加入StudyTask":"已加入Today");
 }
 function beginFocus(id,min){
  const t=(state.tasks||[]).find(x=>String(x.id)===String(id));
  if(!t)return;
- if(t.kind!=="study"){toast("普通任务不使用计时器");return;}
+ if(t.kind!=="study"){toast("普通Task不使用计时器");return;}
  const planned=Math.max(1,Number(min||t.duration||t.dur||5));
  state.focus={
    running:true,
@@ -701,14 +701,14 @@ function togglePauseFocus(){
    state.focus.startedAt=Date.now();
    state.focus.paused=false;
    state.focus.pausedAt=null;
-   save();runTimer();render();toast('继续计时');
+   save();runTimer();render();toast('Resume计时');
  }else{
    state.focus.accumulatedSeconds=getFocusElapsedSeconds();
    state.focus.seconds=state.focus.accumulatedSeconds;
    state.focus.paused=true;
    state.focus.pausedAt=Date.now();
    clearInterval(timer);
-   save();render();toast('已暂停');
+   save();render();toast('已Pause');
  }
 }
 function runTimer(){
@@ -736,7 +736,7 @@ function scheduleToday(){
    t.time=String(Math.floor(cursor/60)).padStart(2,"0")+":"+String(cursor%60).padStart(2,"0");
    cursor+=mins+10; placed++;
  });
- save();render();toast(placed?`已自动安排 ${placed} 件未排时间任务，预留 10 分钟缓冲`:`今天没有需要自动安排的任务`);
+ save();render();toast(placed?`已自动安排 ${placed} 件未排TimeTask，预留 10 min缓冲`:`Today没There are需要自动安排的Task`);
 }
 function deferTask(id,days=1){
  let t=task(id);if(!t)return;
@@ -746,27 +746,27 @@ function deferTask(id,days=1){
 }
 function completeFromFocus(){ stopFocus(); }
 
-function moveToHelpPool(id){let t=task(id);if(!t)return;t.helpAt=new Date().toISOString();t.status="help";save();render();toast("已放入求助池，可以稍后继续")}
+function moveToHelpPool(id){let t=task(id);if(!t)return;t.helpAt=new Date().toISOString();t.status="help";save();render();toast("已放入求助池，可以稍后Resume")}
 
 function showNotificationDemo(){
  const t=task(state.activeTaskId)||state.tasks.find(x=>x.date===isoToday()&&x.status!=="done");
- const title=t?.title||"今天的重点任务";
+ const title=t?.title||"Today的PriorityTask";
  const time=t?.time||"现在";
  document.getElementById("modalBody").innerHTML=`
  <div class="ios-notify-demo">
    <div class="notify-status"><span>9:41</span><span>▴ ᯤ ▰</span></div>
-   <div class="notify-time">${new Date().toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit",hour12:false})}</div>
-   <div class="notify-date">${esc(new Date().toLocaleDateString("zh-CN",{weekday:"long",month:"long",day:"numeric"}))}</div>
+   <div class="notify-time">${new Date().toLocaleTimeString("en-AU",{hour:"2-digit",minute:"2-digit",hour12:false})}</div>
+   <div class="notify-date">${esc(new Date().toLocaleDateString("en-AU",{weekday:"long",month:"long",day:"numeric"}))}</div>
 
    <div class="notify-stack">
      <div class="ios-notification" onclick="closeModal();startTask('${t?.id||""}')">
        <div class="appicon">F</div>
        <div class="notify-content">
          <div class="notify-head"><b>FlowOS</b><time>现在</time></div>
-         <strong>该开始下一件事了</strong>
-         <p>${esc(title)} · ${time} · ${t?.duration||30} 分钟</p>
+         <strong>该Start下一件事了</strong>
+         <p>${esc(title)} · ${time} · ${t?.duration||30} min</p>
          <div class="notify-actions">
-           <button onclick="event.stopPropagation();closeModal();startTask('${t?.id||""}')">▶ 开始 5 分钟</button>
+           <button onclick="event.stopPropagation();closeModal();startTask('${t?.id||""}')">▶ Start 5 min</button>
            <button onclick="event.stopPropagation();closeModal();">稍后</button>
          </div>
        </div>
@@ -775,17 +775,17 @@ function showNotificationDemo(){
      <div class="ios-notification" onclick="event.stopPropagation();">
        <div class="appicon">F</div>
        <div class="notify-content">
-         <div class="notify-head"><b>FlowOS · 计划</b><time>10分钟前</time></div>
-         <strong>今天有 3 个重点</strong>
-         <p>系统已经根据你的时间负荷排好顺序，不需要一次看完全部任务。</p>
+         <div class="notify-head"><b>FlowOS · Plan</b><time>10min前</time></div>
+         <strong>TodayThere are 3 个Priority</strong>
+         <p>系统已经根据你的Time负荷排好顺序，不需要一次看完AllTask。</p>
        </div>
      </div>
    </div>
    <div class="notify-home"></div>
  </div>
  <div class="notify-info">
-   <b>这就是我们要做的“锁屏弹窗”。</b><br>
-   不是单纯提醒“你有任务”，而是直接给用户一个最小启动动作：<b>开始 5 分钟</b>。
+   <b>这就是我们要做的“Lock-screen notification”。</b><br>
+   不是单纯Reminder“你There areTask”，而是直接给用户一个最小启动动作：<b>Start 5 min</b>。
    点击后直接进入 FlowOS 的启动引擎。
  </div>`;
  showModal();
@@ -809,11 +809,11 @@ function renderFocusBox(t){
    </div>
    <div class="focusmeta">
      <span class="chip ${over?"orange":"purple"}">${over?"超时 +"+om+":"+os:"剩余 "+rm+":"+rs}</span>
-     <span class="chip">计划 ${state.focus.plannedMinutes}m</span>
+     <span class="chip">Plan ${state.focus.plannedMinutes}m</span>
    </div>
    <div style="text-align:center;font-weight:700;margin:2px 0 14px">${esc(t.title)}</div>
-   <div style="display:flex;gap:8px"><button class="secondary" style="flex:1" onclick="togglePauseFocus()">${state.focus.paused?'▶ 继续':'Ⅱ 暂停'}</button><button class="primary" style="flex:1" onclick="stopFocus()">✓ 完成并记录</button></div>
-   <div class="focushint">${over?"已经超过预计时间，计时不会自动停止。":"到达预计时间后会继续计时，直到你主动完成。"}</div>
+   <div style="display:flex;gap:8px"><button class="secondary" style="flex:1" onclick="togglePauseFocus()">${state.focus.paused?'▶ Resume':'Ⅱ Pause'}</button><button class="primary" style="flex:1" onclick="stopFocus()">✓ Done并记录</button></div>
+   <div class="focushint">${over?"已经超过预计Time，计时不会自动停止。":"到达预计Time后会Resume计时，直到你主动Done。"}</div>
  </div>`;
 }
 function stopFocus(){
@@ -831,25 +831,25 @@ function stopFocus(){
  save();
  clearInterval(timer);
  render();
- toast('完成，实际 '+elapsed+' 分钟已记录');
+ toast('Done，Actual '+elapsed+' min已记录');
 }
 function renderPlan(){
  const base=new Date();let days=[];for(let i=-2;i<5;i++){let d=new Date(base);d.setDate(base.getDate()+i);let ds=d.toISOString().slice(0,10);days.push(ds)}
- document.getElementById("planTabs").innerHTML=days.map(d=>`<button class="${d===isoToday()?"on":""}" onclick="selectPlanDate('${d}',this)">${d===isoToday()?"今天":new Date(d+"T12:00:00").toLocaleDateString("zh-CN",{weekday:"short",day:"numeric"})}</button>`).join("");
+ document.getElementById("planTabs").innerHTML=days.map(d=>`<button class="${d===isoToday()?"on":""}" onclick="selectPlanDate('${d}',this)">${d===isoToday()?"Today":new Date(d+"T12:00:00").toLocaleDateString("en-AU",{weekday:"short",day:"numeric"})}</button>`).join("");
  selectPlanDate(isoToday(),null);
 }
 function selectPlanDate(d,el){
  window.planDate=d;
  document.querySelectorAll("#planTabs button").forEach(b=>b.classList.remove("on")); if(el)el.classList.add("on");
  let ts=state.tasks.filter(t=>t.date===d), planned=ts.reduce((a,t)=>a+t.duration,0), done=ts.filter(t=>t.status==="done").length;
- document.getElementById("planSummary").innerHTML=`<div class="row between"><div><div class="small muted">${fmtDate(d)}</div><div style="font-size:25px;font-weight:800">${(planned/60).toFixed(1)}h</div><div class="small muted">计划负荷 · ${done}/${ts.length} 已完成</div></div><div style="text-align:right"><span class="chip ${planned>360?"red":"green"}">${planned>360?"可能超载":"负荷正常"}</span><div style="margin-top:8px"><button class="secondary" onclick="autoBalance('${d}')">自动平衡</button>${d===isoToday()?`<button class="secondary" onclick="scheduleToday()">自动排程</button>`:""}</div></div></div>`;
- document.getElementById("planList").innerHTML=ts.length?ts.sort((a,b)=>(a.time||"99:99").localeCompare(b.time||"99:99")).map(taskHTML).join(""):`<div class="empty">这一天没有任务。<br><button class="primary" style="margin-top:12px" onclick="openTaskModal('${d}')">添加任务</button></div>`;
+ document.getElementById("planSummary").innerHTML=`<div class="row between"><div><div class="small muted">${fmtDate(d)}</div><div style="font-size:25px;font-weight:800">${(planned/60).toFixed(1)}h</div><div class="small muted">Plan负荷 · ${done}/${ts.length} 已Done</div></div><div style="text-align:right"><span class="chip ${planned>360?"red":"green"}">${planned>360?"可能超载":"负荷正常"}</span><div style="margin-top:8px"><button class="secondary" onclick="autoBalance('${d}')">自动平衡</button>${d===isoToday()?`<button class="secondary" onclick="scheduleToday()">自动排程</button>`:""}</div></div></div>`;
+ document.getElementById("planList").innerHTML=ts.length?ts.sort((a,b)=>(a.time||"99:99").localeCompare(b.time||"99:99")).map(taskHTML).join(""):`<div class="empty">这一天没There areTask。<br><button class="primary" style="margin-top:12px" onclick="openTaskModal('${d}')">AddTask</button></div>`;
 }
 function autoBalance(d){
  let ts=state.tasks.filter(t=>t.date===d&&t.status!=="done").sort((a,b)=>b.duration-a.duration);
  let total=calcLoad(ts),moved=0;
  if(total>360){for(let t of ts){if(total<=360)break;if(t.priority>1){let nd=new Date(d+"T12:00:00");nd.setDate(nd.getDate()+1);t.date=nd.toISOString().slice(0,10);total-=t.duration;moved++}}}
- save();render();toast(moved?`已把 ${moved} 个低优先级任务移到下一天`:"当前无需自动平衡")}
+ save();render();toast(moved?`已把 ${moved} 个低PriorityTask移到下一天`:"当前无需自动平衡")}
 function renderGoals(){
  let avg=state.goals.length?Math.round(state.goals.reduce((a,g)=>a+g.progress,0)/state.goals.length):0;
  document.getElementById("goalHealth").textContent=avg+"%";document.getElementById("goalHealthBar").style.width=avg+"%";
@@ -857,7 +857,7 @@ function renderGoals(){
   let ps=state.projects.filter(p=>p.goalId===g.id);
   return `<div class="goal"><div class="row between"><div><div class="gtitle">${esc(g.title)}</div><div class="gdesc">${esc(g.desc)}</div></div><span class="chip purple">${g.progress}%</span></div>
    <div class="progress" style="margin-top:11px"><i style="width:${g.progress}%"></i></div>
-   <div class="children">${ps.map(p=>`<div style="padding:7px 0"><div class="row between"><b style="font-size:13px">${esc(p.title)}</b><span class="small muted">${p.progress}%</span></div><div class="progress" style="margin-top:6px"><i style="width:${p.progress}%"></i></div></div>`).join("")||'<span class="small muted">还没有项目。项目是目标与任务之间的桥。</span>'}</div></div>`;
+   <div class="children">${ps.map(p=>`<div style="padding:7px 0"><div class="row between"><b style="font-size:13px">${esc(p.title)}</b><span class="small muted">${p.progress}%</span></div><div class="progress" style="margin-top:6px"><i style="width:${p.progress}%"></i></div></div>`).join("")||'<span class="small muted">还没There areProject。Project是目标与Task之间的桥。</span>'}</div></div>`;
  }).join("");
 }
 const HISTORY_KEY="flowos_history_v1";
@@ -875,68 +875,68 @@ function archiveYesterday(){
 function renderHistory(){
  const box=document.getElementById("historyList");if(!box)return;const q=(document.getElementById("historySearch")?.value||"").trim().toLowerCase();
  const h=loadHistory().filter(x=>!q||JSON.stringify(x).toLowerCase().includes(q));
- if(!h.length){box.innerHTML="<div class=\"empty\">还没有历史记录。每天点一次「一键导入昨日」即可。</div>";return}
+ if(!h.length){box.innerHTML="<div class=\"empty\">还没There areHistory记录。Daily点一次「Import yesterday」即可。</div>";return}
  box.innerHTML=h.map(x=>{const done=x.tasks.filter(t=>t.status==="done").length,planned=x.tasks.reduce((a,t)=>a+t.duration,0),actual=x.tasks.reduce((a,t)=>a+t.actual,0);
- return `<details class="history-day"><summary><div><b>${esc(fmtDate(x.date))}</b><span class="small muted"> · ${x.tasks.length} 项 · 完成 ${done}</span></div><span class="chip purple">${Math.round(planned/60*10)/10}h / ${Math.round(actual/60*10)/10}h</span></summary><div class="history-items">${x.tasks.map(t=>`<div class="history-item"><span class="history-dot ${t.status==="done"?"done":""}">${t.status==="done"?"✓":"·"}</span><div><b>${esc(t.title)}</b><div class="small muted">${t.kind==="study"?"学习":"任务"} · 计划 ${t.duration}m · 实际 ${t.actual||0}m${t.projectId?" · "+esc(projectName(t.projectId)):""}</div></div></div>`).join("")||"<div class=\"small muted\">当天没有任务。</div>"}</div></details>`}).join("");
+ return `<details class="history-day"><summary><div><b>${esc(fmtDate(x.date))}</b><span class="small muted"> · ${x.tasks.length}  items · Done ${done}</span></div><span class="chip purple">${Math.round(planned/60*10)/10}h / ${Math.round(actual/60*10)/10}h</span></summary><div class="history-items">${x.tasks.map(t=>`<div class="history-item"><span class="history-dot ${t.status==="done"?"done":""}">${t.status==="done"?"✓":"·"}</span><div><b>${esc(t.title)}</b><div class="small muted">${t.kind==="study"?"Study":"Task"} · Plan ${t.duration}m · Actual ${t.actual||0}m${t.projectId?" · "+esc(projectName(t.projectId)):""}</div></div></div>`).join("")||"<div class=\"small muted\">当天没There areTask。</div>"}</div></details>`}).join("");
 }
 function exportHistory(){const payload={version:1,exportedAt:Date.now(),history:loadHistory()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="flowos-history.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);}
-function importHistoryFile(e){const file=e.target.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const x=JSON.parse(reader.result),incoming=Array.isArray(x)?x:x.history;if(!Array.isArray(incoming))throw new Error("bad");const merged=loadHistory();incoming.forEach(item=>{if(!item?.date)return;const i=merged.findIndex(v=>v.date===item.date);if(i>=0)merged[i]=item;else merged.push(item)});merged.sort((a,b)=>b.date.localeCompare(a.date));saveHistory(merged);renderHistory();toast("已导入 "+incoming.length+" 天历史");}catch(err){toast("备份格式不正确")}e.target.value=""};reader.readAsText(file)}
+function importHistoryFile(e){const file=e.target.files?.[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const x=JSON.parse(reader.result),incoming=Array.isArray(x)?x:x.history;if(!Array.isArray(incoming))throw new Error("bad");const merged=loadHistory();incoming.forEach(item=>{if(!item?.date)return;const i=merged.findIndex(v=>v.date===item.date);if(i>=0)merged[i]=item;else merged.push(item)});merged.sort((a,b)=>b.date.localeCompare(a.date));saveHistory(merged);renderHistory();toast("已导入 "+incoming.length+" 天History");}catch(err){toast("备份格式不正确")}e.target.value=""};reader.readAsText(file)}
 function renderReview(){
  let ts=state.tasks.filter(t=>t.date<=isoToday()), done=ts.filter(t=>t.status==="done"), planned=ts.reduce((a,t)=>a+t.duration,0), actual=ts.reduce((a,t)=>a+(t.actual||0),0);
  let rate=ts.length?Math.round(done.length/ts.length*100):0, accuracy=planned?Math.max(0,Math.round((1-Math.abs(actual-planned)/planned)*100)):0;
- document.getElementById("metrics").innerHTML=`<div class="metric"><div class="num">${rate}%</div><div class="lbl">执行率</div></div><div class="metric"><div class="num">${accuracy}%</div><div class="lbl">计划可信度</div></div><div class="metric"><div class="num">${Math.round(planned/60*10)/10}h</div><div class="lbl">累计计划</div></div><div class="metric"><div class="num">${Math.round(actual/60*10)/10}h</div><div class="lbl">累计实际</div></div>`;
- document.getElementById("credibility").innerHTML=`<div style="margin:12px 0"><div class="barlabel"><span>计划 ${Math.round(planned/60*10)/10}h</span><span>实际 ${Math.round(actual/60*10)/10}h</span></div><div class="progress"><i style="width:${Math.min(100,accuracy)}%"></i></div></div><p class="small muted">可信度不是“好坏分数”。它只表示系统目前对你的时间估计有多接近现实。</p>`;
+ document.getElementById("metrics").innerHTML=`<div class="metric"><div class="num">${rate}%</div><div class="lbl">Completion rate</div></div><div class="metric"><div class="num">${accuracy}%</div><div class="lbl">Plan可信度</div></div><div class="metric"><div class="num">${Math.round(planned/60*10)/10}h</div><div class="lbl">累计Plan</div></div><div class="metric"><div class="num">${Math.round(actual/60*10)/10}h</div><div class="lbl">累计Actual</div></div>`;
+ document.getElementById("credibility").innerHTML=`<div style="margin:12px 0"><div class="barlabel"><span>Plan ${Math.round(planned/60*10)/10}h</span><span>Actual ${Math.round(actual/60*10)/10}h</span></div><div class="progress"><i style="width:${Math.min(100,accuracy)}%"></i></div></div><p class="small muted">可信度不是“好坏分数”。它只表示系统目前对你的Time估计There are多接近现实。</p>`;
  let long=state.tasks.filter(t=>t.status!=="done"&&t.date<isoToday()).length;
  let candidates=state.tasks.filter(t=>t.status==="done"&&t.actual>0&&Math.abs(t.actual-t.duration)>=Math.max(10,t.duration*.25));
- document.getElementById("adjustments").innerHTML=long?`<div class="step"><div class="stepnum">1</div><div><b>有 ${long} 个任务过期</b><div class="small muted">先决定是否顺延，不要让过期任务悄悄吞掉今天。</div></div></div><button class="secondary" onclick="rollover()">把过期任务移到今天</button>`:candidates.length?`<div class="step"><div class="stepnum">↗</div><div><b>发现 ${candidates.length} 个明显的时间偏差</b><div class="small muted">例如计划 ${candidates[0].duration} 分钟，实际 ${candidates[0].actual} 分钟。可以把这个任务的未来默认时长调整。</div></div></div><button class="secondary" onclick="learnDurations()">用实际时间调整未来计划</button>`:`<div class="step"><div class="stepnum">✓</div><div><b>目前没有明显偏差</b><div class="small muted">继续执行，系统会逐渐学习你的真实节奏。</div></div></div>`;
- document.getElementById("weekly").innerHTML=Array.from({length:7},(_,i)=>{let d=new Date();d.setDate(d.getDate()-i);let ds=d.toISOString().slice(0,10),a=state.tasks.filter(t=>t.date===ds),dn=a.filter(t=>t.status==="done").length;return `<div class="row between" style="padding:7px 0;border-bottom:1px solid #eee9e3"><span class="small">${fmtDate(ds)}</span><span class="small">${dn}/${a.length} 完成 · ${a.reduce((x,t)=>x+t.duration,0)}m</span></div>`}).join("");
+ document.getElementById("adjustments").innerHTML=long?`<div class="step"><div class="stepnum">1</div><div><b>There are ${long} 个Task过期</b><div class="small muted">先决定是否顺延，不要让过期Task悄悄吞掉Today。</div></div></div><button class="secondary" onclick="rollover()">把过期Task移到Today</button>`:candidates.length?`<div class="step"><div class="stepnum">↗</div><div><b>Found ${candidates.length}  significant time variances</b><div class="small muted">例如Plan ${candidates[0].duration} min，Actual ${candidates[0].actual} min。可以把这个Task的未来默认时长调整。</div></div></div><button class="secondary" onclick="learnDurations()">用ActualTime调整未来Plan</button>`:`<div class="step"><div class="stepnum">✓</div><div><b>No significant variance</b><div class="small muted">Resume执行，系统会逐渐Study你的真实节奏。</div></div></div>`;
+ document.getElementById("weekly").innerHTML=Array.from({length:7},(_,i)=>{let d=new Date();d.setDate(d.getDate()-i);let ds=d.toISOString().slice(0,10),a=state.tasks.filter(t=>t.date===ds),dn=a.filter(t=>t.status==="done").length;return `<div class="row between" style="padding:7px 0;border-bottom:1px solid #eee9e3"><span class="small">${fmtDate(ds)}</span><span class="small">${dn}/${a.length} Done · ${a.reduce((x,t)=>x+t.duration,0)}m</span></div>`}).join("");
 }
 function learnDurations(){
  let n=0;state.tasks.filter(t=>t.status==="done"&&t.actual>0).forEach(t=>{state.tasks.filter(x=>x.repeatSource===t.repeatSource&&x.status!=="done").forEach(x=>{x.duration=t.actual;n++})});
- save();render();toast(n?`已调整 ${n} 个未来重复任务`:"没有可调整的重复任务");
+ save();render();toast(n?`Adjusted ${n} 个未来RepeatTask`:"没There are可调整的RepeatTask");
 }
-function rollover(){let n=0;state.tasks.forEach(t=>{if(t.status!=="done"&&t.date<isoToday()){t.date=isoToday();n++}});save();render();toast(`已移入今天 ${n} 项`)}
+function rollover(){let n=0;state.tasks.forEach(t=>{if(t.status!=="done"&&t.date<isoToday()){t.date=isoToday();n++}});save();render();toast(`已移入Today ${n}  items`)}
 function openTaskModal(date=isoToday(),id=null){
  let t=id?task(id):null;
- document.getElementById("modalBody").innerHTML=`<h2 style="margin:0">${t?"编辑任务":"添加任务"}</h2><p class="small muted">${t?"修改任务，系统会继续记录计划与实际。":"输入自然语言也可以，例如：明天下午3点和老师电话，提前10分钟提醒。"}</p>
- <label>任务</label><input id="fTitle" value="${esc(t?.title||"")}" placeholder="我要完成什么？"><button class="secondary" style="margin-top:7px;width:100%" onclick="openNaturalTaskModal()">⌕ 用一句话创建</button>
- <label>日期 / 时间</label><div class="formgrid"><input id="fDate" type="date" value="${t?.date||date}"><input id="fTime" type="time" value="${t?.time||""}"></div>
- <label>类型</label><select id="fKind"><option value="task" ${t?.kind!=="study"?"selected":""}>普通任务 · 不计时</option><option value="study" ${t?.kind==="study"?"selected":""}>学习 · 可计时</option></select>
- <label>分类</label><select id="fCategory"><option value="task" ${(t?.category||taskCategory(t||{}))==='task'?'selected':''}>任务</option><option value="life" ${(t?.category||taskCategory(t||{}))==='life'?'selected':''}>生活</option><option value="work" ${(t?.category||taskCategory(t||{}))==='work'?'selected':''}>工作</option><option value="study" ${(t?.category||taskCategory(t||{}))==='study'?'selected':''}>学习</option></select>
- <label>计划用时（分钟）</label><input id="fDuration" type="number" min="5" step="5" value="${t?.duration||30}">
- <label>重要程度（1–5）</label><select id="fImportance">${[1,2,3,4,5].map(n=>`<option value="${n}" ${(t?.importance||3)===n?"selected":""}>${n} · ${"★".repeat(n)}${"☆".repeat(5-n)}</option>`).join("")}</select>
- <label>紧急</label><select id="fUrgent"><option value="0" ${!t?.urgent?"selected":""}>不紧急</option><option value="1" ${t?.urgent?"selected":""}>紧急</option></select>
- <label>项目</label><select id="fProject">${state.projects.map(p=>`<option value="${p.id}" ${t?.projectId===p.id?"selected":""}>${esc(p.title)}</option>`).join("")}</select>
- <label>优先级</label><select id="fPriority"><option value="1" ${t?.priority===1?"selected":""}>1 · 今天必须推动</option><option value="2" ${t?.priority===2?"selected":""}>2 · 重要</option><option value="3" ${t?.priority===3?"selected":""}>3 · 可以延后</option></select>
- <label>重复</label><select id="fRepeat"><option value="" ${!t?.repeat?"selected":""}>不重复</option><option value="daily" ${t?.repeat==="daily"?"selected":""}>每天</option><option value="weekly" ${t?.repeat==="weekly"?"selected":""}>每周</option></select>
- <label>提醒</label><select id="fReminder"><option value="0" ${!(t?.reminder>0)?"selected":""}>不提醒</option><option value="10" ${t?.reminder===10?"selected":""}>提前10分钟</option><option value="30" ${t?.reminder===30?"selected":""}>提前30分钟</option></select>
- <div class="formactions"><button class="secondary" onclick="closeModal()">取消</button><button class="primary" onclick="saveTask('${id||""}')">保存任务</button></div>`;
+ document.getElementById("modalBody").innerHTML=`<h2 style="margin:0">${t?"编辑Task":"AddTask"}</h2><p class="small muted">${t?"修改Task，系统会Resume记录Plan与Actual。":"Natural language works too，Example:明天下午3点和老师电话，10 minutes beforeReminder。"}</p>
+ <label>Task</label><input id="fTitle" value="${esc(t?.title||"")}" placeholder="我要Done什么？"><button class="secondary" style="margin-top:7px;width:100%" onclick="openNaturalTaskModal()">⌕ 用Quick create</button>
+ <label>Date / Time</label><div class="formgrid"><input id="fDate" type="date" value="${t?.date||date}"><input id="fTime" type="time" value="${t?.time||""}"></div>
+ <label>Type</label><select id="fKind"><option value="task" ${t?.kind!=="study"?"selected":""}>普通Task · 不计时</option><option value="study" ${t?.kind==="study"?"selected":""}>Study · 可计时</option></select>
+ <label>Category</label><select id="fCategory"><option value="task" ${(t?.category||taskCategory(t||{}))==='task'?'selected':''}>Task</option><option value="life" ${(t?.category||taskCategory(t||{}))==='life'?'selected':''}>Life</option><option value="work" ${(t?.category||taskCategory(t||{}))==='work'?'selected':''}>Work</option><option value="study" ${(t?.category||taskCategory(t||{}))==='study'?'selected':''}>Study</option></select>
+ <label>Planned duration (minutes)</label><input id="fDuration" type="number" min="5" step="5" value="${t?.duration||30}">
+ <label>Importance (1–5)</label><select id="fImportance">${[1,2,3,4,5].map(n=>`<option value="${n}" ${(t?.importance||3)===n?"selected":""}>${n} · ${"★".repeat(n)}${"☆".repeat(5-n)}</option>`).join("")}</select>
+ <label>Urgent</label><select id="fUrgent"><option value="0" ${!t?.urgent?"selected":""}>不Urgent</option><option value="1" ${t?.urgent?"selected":""}>Urgent</option></select>
+ <label>Project</label><select id="fProject">${state.projects.map(p=>`<option value="${p.id}" ${t?.projectId===p.id?"selected":""}>${esc(p.title)}</option>`).join("")}</select>
+ <label>Priority</label><select id="fPriority"><option value="1" ${t?.priority===1?"selected":""}>1 · Today必须推动</option><option value="2" ${t?.priority===2?"selected":""}>2 · Important</option><option value="3" ${t?.priority===3?"selected":""}>3 · Can be postponed</option></select>
+ <label>Repeat</label><select id="fRepeat"><option value="" ${!t?.repeat?"selected":""}>不Repeat</option><option value="daily" ${t?.repeat==="daily"?"selected":""}>Daily</option><option value="weekly" ${t?.repeat==="weekly"?"selected":""}>Weekly</option></select>
+ <label>Reminder</label><select id="fReminder"><option value="0" ${!(t?.reminder>0)?"selected":""}>不Reminder</option><option value="10" ${t?.reminder===10?"selected":""}>10 minutes before</option><option value="30" ${t?.reminder===30?"selected":""}>30 minutes before</option></select>
+ <div class="formactions"><button class="secondary" onclick="closeModal()">Cancel</button><button class="primary" onclick="saveTask('${id||""}')">SaveTask</button></div>`;
  showModal();
 }
 function saveTask(id){
- let title=document.getElementById("fTitle").value.trim();if(!title){toast("先写任务内容");return}
+ let title=document.getElementById("fTitle").value.trim();if(!title){toast("先写Task内容");return}
  let t=id?task(id):{id:uid(),status:"todo",actual:0,difficulty:2,why:"",kind:"task",importance:3,urgent:false,importanceOrder:state.tasks.filter(x=>x.date===(document.getElementById("fDate")?.value||isoToday())).length+1};
  Object.assign(t,{title,date:document.getElementById("fDate").value,time:document.getElementById("fTime").value,duration:+document.getElementById("fDuration").value||30,kind:document.getElementById("fKind").value,category:document.getElementById("fCategory")?.value||"task",importance:+document.getElementById("fImportance").value||3,urgent:document.getElementById("fUrgent").value==="1",projectId:document.getElementById("fProject").value,priority:+document.getElementById("fPriority").value,repeat:document.getElementById("fRepeat").value,reminder:+document.getElementById("fReminder").value||0}); t.priority=t.importance>=5?1:(t.importance>=3?2:3); if(!id){t.importanceOrder=state.tasks.filter(x=>x.date===t.date).length+1;}
  if(!id){if(t.repeat)t.repeatSource=t.id;state.tasks.push(t); if(t.repeat){const next=new Date(t.date+"T12:00:00");next.setDate(next.getDate()+(t.repeat==="weekly"?7:1));state.tasks.push({...t,id:uid(),date:next.toISOString().slice(0,10),status:"todo",actual:0,repeatSource:t.id});}}
- save();ensureRepeats();closeModal();render();toast(id?"任务已更新":(t.repeat?"任务已加入，并生成下一次":"任务已加入计划"));
+ save();ensureRepeats();closeModal();render();toast(id?"Task已更新":(t.repeat?"Task已加入，并生成下一次":"Task已加入Plan"));
 }
 function openEditTask(id){let t=task(id);openTaskModal(t?.date||isoToday(),id)}
 function openGoalModal(){
- document.getElementById("modalBody").innerHTML=`<h2 style="margin:0">新增长期方向</h2><p class="small muted">先定义方向，再让项目和任务服务于它。</p><label>我想成为谁 / 我想建立什么</label><input id="gTitle" placeholder="例如：成为能够独立完成设计的人"><label>为什么</label><textarea id="gDesc" placeholder="这个方向对我为什么重要？"></textarea><div class="formactions"><button class="secondary" onclick="closeModal()">取消</button><button class="primary" onclick="saveGoal()">建立方向</button></div>`;showModal()
+ document.getElementById("modalBody").innerHTML=`<h2 style="margin:0">New long-term goal</h2><p class="small muted">先定义Goals，再让Project和Task服务于它。</p><label>Who do I want to become / what do I want to build</label><input id="gTitle" placeholder="Example:成为能够独立Done设计的人"><label>Why</label><textarea id="gDesc" placeholder="这个Goals对我WhyImportant？"></textarea><div class="formactions"><button class="secondary" onclick="closeModal()">Cancel</button><button class="primary" onclick="saveGoal()">Create goal</button></div>`;showModal()
 }
-function saveGoal(){let title=document.getElementById("gTitle").value.trim();if(!title){toast("先写方向");return}let g={id:uid(),title,desc:document.getElementById("gDesc").value.trim(),progress:0,projects:[]};state.goals.push(g);let p={id:uid(),goalId:g.id,title:"第一个项目",progress:0};state.projects.push(p);save();closeModal();render();toast("方向已建立，下一步是项目")}
+function saveGoal(){let title=document.getElementById("gTitle").value.trim();if(!title){toast("先写Goals");return}let g={id:uid(),title,desc:document.getElementById("gDesc").value.trim(),progress:0,projects:[]};state.goals.push(g);let p={id:uid(),goalId:g.id,title:"第一个Project",progress:0};state.projects.push(p);save();closeModal();render();toast("Goals已建立，下一步是Project")}
 function openProjectModal(){
- if(!state.goals.length){toast("先建立一个方向");return}
- document.getElementById("modalBody").innerHTML=`<h2 style="margin:0">新建项目</h2><label>项目名称</label><input id="pTitle" placeholder="例如：AS2870 学习与应用"><label>归属方向</label><select id="pGoal">${state.goals.map(g=>`<option value="${g.id}">${esc(g.title)}</option>`).join("")}</select><div class="formactions"><button class="secondary" onclick="closeModal()">取消</button><button class="primary" onclick="saveProject()">建立项目</button></div>`;showModal()
+ if(!state.goals.length){toast("Create a goal first");return}
+ document.getElementById("modalBody").innerHTML=`<h2 style="margin:0">新建Project</h2><label>Project名称</label><input id="pTitle" placeholder="Example:AS2870 Study与应用"><label>Goal</label><select id="pGoal">${state.goals.map(g=>`<option value="${g.id}">${esc(g.title)}</option>`).join("")}</select><div class="formactions"><button class="secondary" onclick="closeModal()">Cancel</button><button class="primary" onclick="saveProject()">建立Project</button></div>`;showModal()
 }
-function saveProject(){let title=document.getElementById("pTitle").value.trim();if(!title){toast("先写项目名称");return}let p={id:uid(),goalId:document.getElementById("pGoal").value,title,progress:0};state.projects.push(p);save();closeModal();render();toast("项目已建立")}
+function saveProject(){let title=document.getElementById("pTitle").value.trim();if(!title){toast("先写Project名称");return}let p={id:uid(),goalId:document.getElementById("pGoal").value,title,progress:0};state.projects.push(p);save();closeModal();render();toast("Project已建立")}
 function showModal(){document.getElementById("modalBack").classList.add("show")}
 function closeModal(){document.getElementById("modalBack").classList.remove("show")}
 function showLock(){
  let ts=state.tasks.filter(t=>t.date===isoToday()&&t.status!=="done").sort((a,b)=>a.priority-b.priority).slice(0,3);
  const now=new Date();
- const time=now.toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit",hour12:false});
- const date=now.toLocaleDateString("zh-CN",{weekday:"long",month:"long",day:"numeric"});
+ const time=now.toLocaleTimeString("en-AU",{hour:"2-digit",minute:"2-digit",hour12:false});
+ const date=now.toLocaleDateString("en-AU",{weekday:"long",month:"long",day:"numeric"});
  const weather="☼ 18°";
  document.getElementById("modalBody").innerHTML=`
  <div class="ios-lock-wrap">
@@ -951,34 +951,34 @@ function showLock(){
      <div class="ios-time">${esc(time)}</div>
 
      <div class="ios-widget">
-       <div class="ios-widget-head"><span>FLOWOS · TODAY</span><span>${ts.length} 项待处理</span></div>
+       <div class="ios-widget-head"><span>FLOWOS · TODAY</span><span>${ts.length}  itemsto do</span></div>
        ${ts.map((t,i)=>`
          <div class="ios-task" onclick="closeModal();startTask('${t.id}')">
            <div class="ios-circle ${i===0?"important":""}">${i===0?"★":""}</div>
            <div class="ios-task-main">
              <b>${esc(t.title)}</b>
-             <small>${t.time||"今天"} · ${t.duration} 分钟 · ${esc(projectName(t.projectId))}</small>
+             <small>${t.time||"Today"} · ${t.duration} min · ${esc(projectName(t.projectId))}</small>
            </div>
            <div class="ios-arrow">›</div>
          </div>`).join("") ||
-         '<div class="ios-empty">今天没有未完成重点 🎉</div>'}
+         '<div class="ios-empty">Today没There are未DonePriority 🎉</div>'}
      </div>
 
      <div class="ios-controls">
-       <button onclick="closeModal();openStartForTop()">▶<span>开始</span></button>
-       <button onclick="closeModal();openTaskModal()">＋<span>任务</span></button>
-       <button onclick="closeModal();nav('today')">☷<span>今天</span></button>
+       <button onclick="closeModal();openStartForTop()">▶<span>Start</span></button>
+       <button onclick="closeModal();openTaskModal()">＋<span>Task</span></button>
+       <button onclick="closeModal();nav('today')">☷<span>Today</span></button>
      </div>
      <div class="ios-home"></div>
    </div>
  </div>
  <div class="ios-note">
-   <b>苹果锁屏风格原型</b><br>
-   这里模拟的是 iPhone Lock Screen 的视觉和交互逻辑：时间、日期、顶部状态、Widget、快捷操作。
-   真正安装到 iPhone 锁屏，需要后续做 iOS 原生 Widget / Live Activity。
+   <b>iOS lock-screen prototype</b><br>
+   This simulates the visual and interaction logic of the iPhone Lock Screen：Time、Date、顶部状态、Widget、Quick actions。
+   A real iPhone lock-screen integration requires a native iOS Widget / Live Activity later.
  </div>
  <div style="margin-top:14px">
-   <button class="primary" style="width:100%" onclick="showNotificationDemo()">查看「锁屏弹窗」</button>
+   <button class="primary" style="width:100%" onclick="showNotificationDemo()">View lock-screen notifications</button>
  </div>`;
  showModal()
 }
@@ -987,31 +987,31 @@ function parseNaturalData(s){
  if(/明天/.test(s)){let x=new Date();x.setDate(x.getDate()+1);d=x.toISOString().slice(0,10)}
  let tm=s.match(/(上午|下午|晚上)?\s*(\d{1,2})(?::(\d{2}))?/);
  if(tm){let h=Number(tm[2]);let m=tm[3]||"00";let ap=tm[1]||"";if((ap==="下午"||ap==="晚上") && h<12){h+=12;}time=String(h).padStart(2,"0")+":"+m}
- let dm=s.match(/(\d+(?:\.\d+)?)\s*(小时|分钟)/);
- if(dm)duration=dm[2]==="小时"?Math.round(+dm[1]*60):Math.round(+dm[1]);
- let rm=s.match(/提前\s*(\d+)\s*分钟/);if(rm)reminder=+rm[1];
- let title=s.replace(/明天|今天|下午|上午|晚上|提前\s*\d+\s*分钟提醒?/g,"").replace(/\d{1,2}(?::\d{2})?/g,"").replace(/\d+(?:\.\d+)?\s*(?:小时|分钟)/g,"").replace(/\s+/g," ").trim();
+ let dm=s.match(/(\d+(?:\.\d+)?)\s*(hours|min)/);
+ if(dm)duration=dm[2]==="hours"?Math.round(+dm[1]*60):Math.round(+dm[1]);
+ let rm=s.match(/in advance\s*(\d+)\s*min/);if(rm)reminder=+rm[1];
+ let title=s.replace(/明天|Today|下午|上午|晚上|in advance\s*\d+\s*minReminder?/g,"").replace(/\d{1,2}(?::\d{2})?/g,"").replace(/\d+(?:\.\d+)?\s*(?:hours|min)/g,"").replace(/\s+/g," ").trim();
  return {date:d,time,duration,reminder,title:title||s};
 }
 function openNaturalTaskModal(){
- document.getElementById("modalBody").innerHTML='<h2 style="margin:0">一句话创建</h2><p class="small muted">例如：明天下午3点和老师电话，提前10分钟提醒，大概30分钟。</p><label>我想做什么？</label><input id="natural" placeholder="把事情直接说出来"><button class="secondary" style="margin-top:8px;width:100%" onclick="parseNatural()">解析并预览</button><div id="nlform" style="margin-top:10px"></div><div class="formactions"><button class="secondary" onclick="closeModal()">取消</button><button class="primary" onclick="saveNatural()">加入计划</button></div>';
+ document.getElementById("modalBody").innerHTML='<h2 style="margin:0">Quick create</h2><p class="small muted">Example:明天下午3点和老师电话，10 minutes beforeReminder，about30min。</p><label>What do I want to do?</label><input id="natural" placeholder="Just describe the task"><button class="secondary" style="margin-top:8px;width:100%" onclick="parseNatural()">Parse & preview</button><div id="nlform" style="margin-top:10px"></div><div class="formactions"><button class="secondary" onclick="closeModal()">Cancel</button><button class="primary" onclick="saveNatural()">加入Plan</button></div>';
  showModal();
 }
 function parseNatural(){
- let s=document.getElementById("natural").value.trim();if(!s){toast("先输入一句话");return}
- let x=parseNaturalData(s), rt=x.reminder?("提前"+x.reminder+"分钟提醒"):"不提醒";
- document.getElementById("nlform").innerHTML='<div class="card" style="margin:0;background:#f8f5ff;border-color:#e8e0ff"><b>'+esc(x.title)+'</b><div class="small muted" style="margin-top:5px">'+x.date+' '+(x.time||"未定时间")+' · '+x.duration+' 分钟 · '+rt+'</div></div>';
- toast("解析完成，可以加入计划");
+ let s=document.getElementById("natural").value.trim();if(!s){toast("先Enter one sentence");return}
+ let x=parseNaturalData(s), rt=x.reminder?("in advance"+x.reminder+"minReminder"):"不Reminder";
+ document.getElementById("nlform").innerHTML='<div class="card" style="margin:0;background:#f8f5ff;border-color:#e8e0ff"><b>'+esc(x.title)+'</b><div class="small muted" style="margin-top:5px">'+x.date+' '+(x.time||"未定Time")+' · '+x.duration+' min · '+rt+'</div></div>';
+ toast("解析Done，可以加入Plan");
 }
 function saveNatural(){
- let s=document.getElementById("natural").value.trim();if(!s){toast("先输入一句话");return}
+ let s=document.getElementById("natural").value.trim();if(!s){toast("先Enter one sentence");return}
  let x=parseNaturalData(s);
  state.tasks.push({id:uid(),title:x.title,date:x.date,time:x.time,duration:x.duration,reminder:x.reminder,actual:0,priority:2,projectId:state.projects[0]?.id||"",status:"todo",difficulty:2,why:"",kind:"task",category:"task",importance:3,urgent:false,importanceOrder:state.tasks.filter(t=>t.date===x.date).length+1});
- save();closeModal();render();toast("已把一句话变成任务");
+ save();closeModal();render();toast("已把一句话变成Task");
 }
 function checkReminders(){
  const now=new Date(), today=isoToday(), hm=now.getHours()*60+now.getMinutes();
- state.tasks.filter(t=>t.date===today&&t.time&&t.reminder&&!t._reminded).forEach(t=>{const [h,m]=t.time.split(":").map(Number);const due=h*60+m-t.reminder;if(hm>=due){t._reminded=true;toast(`🔔 ${t.title} · ${t.reminder}分钟提醒`);}});
+ state.tasks.filter(t=>t.date===today&&t.time&&t.reminder&&!t._reminded).forEach(t=>{const [h,m]=t.time.split(":").map(Number);const due=h*60+m-t.reminder;if(hm>=due){t._reminded=true;toast(`🔔 ${t.title} · ${t.reminder}minReminder`);}});
  save();
 }
 setInterval(checkReminders,30000);checkReminders();
@@ -1027,19 +1027,19 @@ render();
 /* ===== Optimized V0.2 helpers ===== */
 function parseQuickTask(text){
   let time="", dur=30, name=text.trim();
-  const tm=name.match(/(?:今天|明天|后天|周[一二三四五六日天])?\s*(?:上午|下午|晚上|早上)?\s*(\d{1,2})(?:[:：](\d{2}))?\s*(?:点|时)/);
+  const tm=name.match(/(?:Today|明天|后天|周[一二三四五六日天])?\s*(?:上午|下午|晚上|早上)?\s*(\d{1,2})(?:[:：](\d{2}))?\s*(?:点|时)/);
   if(tm){
     let h=+tm[1], min=+(tm[2]||0);
     if(/下午|晚上/.test(tm[0]) && h<12) h+=12;
     time=String(h).padStart(2,"0")+":"+String(min).padStart(2,"0");
     name=name.replace(tm[0],"").trim();
   }
-  const dm=name.match(/(\d+(?:\.\d+)?)\s*(小时|h|分钟|min)/i);
+  const dm=name.match(/(\d+(?:\.\d+)?)\s*(hours|h|min|min)/i);
   if(dm){
-    dur=(/小时|h/i.test(dm[2]))?Math.round(+dm[1]*60):Math.round(+dm[1]);
+    dur=(/hours|h/i.test(dm[2]))?Math.round(+dm[1]*60):Math.round(+dm[1]);
     name=name.replace(dm[0],"").trim();
   }
-  name=name.replace(/^(今天|明天|后天|周[一二三四五六日天])\s*/,"").trim();
+  name=name.replace(/^(Today|明天|后天|周[一二三四五六日天])\s*/,"").trim();
   return {name:name||text.trim(),time,dur};
 }
 function quickAdd(){
@@ -1077,8 +1077,33 @@ if(_renderOriginal){
 </script>
 
 <div id="quickStartBar" style="display:none;position:fixed;bottom:84px;left:50%;transform:translateX(-50%);width:min(420px,calc(100% - 32px));z-index:20">
-  <button onclick="quickStartNext()" style="width:100%;border:0;border-radius:16px;padding:14px;background:#7661d8;color:#fff;font-weight:750;box-shadow:0 10px 28px rgba(118,97,216,.25)">▶ 立即开始下一件</button>
+  <button onclick="quickStartNext()" style="width:100%;border:0;border-radius:16px;padding:14px;background:#7661d8;color:#fff;font-weight:750;box-shadow:0 10px 28px rgba(118,97,216,.25)">▶ 立即Start下一件</button>
 </div>
+
+<script id="english-ui-layer">
+// English UI normalization for dynamic text.
+(function(){
+  const replacements={
+    "早上":"morning","上午":"morning","下午":"afternoon","晚上":"evening","周一":"Mon","周二":"Tue","周三":"Wed","周四":"Thu","周五":"Fri","周六":"Sat","周日":"Sun","周天":"Sun",
+    "没有":"None","完成":"Complete","未完成":"Open","已完成":"Completed","编辑":"Edit","重做":"Redo","顺延":"Reschedule","记录":"Record",
+    "添加项目":"Add project","添加方向":"Add goal","新建":"Create new","关闭":"Close","确认":"Confirm","重置":"Reset","清空":"Clear",
+    "计划时间":"Planned time","实际时间":"Actual time","预计":"Planned","超时":"Overtime","多":"extra","少":"under","正在":"Running","已暂停":"Paused",
+    "当前":"Current","下一次":"Next","昨天":"Yesterday","明天":"Tomorrow","后天":"Day after tomorrow","每月":"Monthly","每年":"Yearly",
+    "保存成功":"Saved","已保存":"Saved","导入":"Import","导出备份":"Export backup","备份":"Backup",
+    "任务列表":"Task list","任务池":"Task pool","今日":"Today","今日计划":"Today’s plan","今日重点":"Today’s priorities","每日":"Daily",
+    "目标":"Goal","目标进度":"Goal progress","项目进度":"Project progress","空":"Empty","暂无":"None yet","更多":"More",
+    "普通任务 · 不计时":"Regular task · No timer","学习 · 可计时":"Study · Timer enabled"
+  };
+  function normalize(root=document.body){
+    const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT); const nodes=[]; while(w.nextNode()) nodes.push(w.currentNode);
+    nodes.forEach(n=>{let s=n.nodeValue; for(const [a,b] of Object.entries(replacements)) s=s.split(a).join(b); if(s!==n.nodeValue)n.nodeValue=s;});
+    root.querySelectorAll('input[placeholder],textarea[placeholder]').forEach(e=>{for(const [a,b] of Object.entries(replacements))e.placeholder=e.placeholder.split(a).join(b)});
+  }
+  const oldRender=window.render; if(typeof oldRender==='function'){window.render=function(){oldRender();normalize();};}
+  document.addEventListener('DOMContentLoaded',()=>normalize());
+  setTimeout(normalize,50); setTimeout(normalize,300);
+})();
+</script>
 </body>
 </html>
 
